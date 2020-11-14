@@ -66,8 +66,13 @@ int main()
 void AgendarCita()
 {
     queue<citas>clone = Ancianos;
+    queue<citas>clone2 = Adultos;
+    queue<citas>clone3 = Nenes;
+
     bool status = true, status2 = true, band = true;
     int opcion, opcion2;
+    int opcion3, opcion4;
+
     cout << "\nIngrese sus datos personales\n";
     cout << "\nNota: En caso de que sea menor de edad, ingrese el DUI de su representante\n";
     cin.ignore();
@@ -88,7 +93,8 @@ void AgendarCita()
     cout<<"\nPor favor escribir la especialidad en letras minusculas";
     cout<<"\nEscriba el nombre de la especialidad que desea: "; getline(cin,InformacionPersonal.doctor);
 
-    if(InformacionPersonal.EdadPaciente > 60){
+//-----------------------------------ANCIANOS---------------------------------//
+    if(InformacionPersonal.EdadPaciente >= 60){
         do{
             band = true;
             system("cls");
@@ -183,4 +189,104 @@ void AgendarCita()
 
         Ancianos.push(InformacionPersonal);
     }
+
+//-----------------------------------ADULTOS---------------------------------//
+    
+    if(InformacionPersonal.EdadPaciente >17 || InformacionPersonal.EdadPaciente < 60 ){
+        do{
+            band = true;
+            system("cls");
+            cout<<"\n             ****HORARIOS***";
+            cout<<"\nConsultas de lunes a sabados";
+            cout<<"\nFechas disponibles a partir del 2 al 23 de diciembre";
+            cout<<"\nDigite la fecha que desea: "; cin>>opcion3;
+            cout<<"\nUsted al ser una persona adulta dispone de los siguientes horarios: \n";
+            cout << "1) 1:30 pm - 2:00 pm       2) 2:00 pm - 2:30 pm\n";
+            cout << "3) 2:30 pm - 3:00 pm       4) 3:00 pm - 3:30 pm\n";
+            cout << "5) 3:30 pm - 4:00 pm       6) 4:00 pm - 4:30 pm\n";
+            cout << "7) 4:30 pm - 5:00 pm\n";
+            cout << "\nEscoja un horario: "; cin >> opcion4;
+
+            if(InformacionPersonal.doctor == "Medico general" || InformacionPersonal.doctor == "medico general"){
+                for(int i=0; i<clone.size();i++){
+                    if(opcion3 == clone.front().fecha){
+                     for(int j=0; j<clone.size(); j++){
+                            if(opcion4 == clone.front().horario){
+                            band = false;
+                            }
+                        }
+                    }
+                clone.pop();
+                }
+            }
+
+            if(InformacionPersonal.doctor == "pediatra" || InformacionPersonal.doctor == "Pediatra"){
+                for(int i=0; i<clone.size();i++){
+                    if(opcion3 == clone.front().fecha){
+                     for(int j=0; j<clone.size(); j++){
+                            if(opcion4 == clone.front().horario){
+                            band = false;
+                            }
+                        }
+                    }
+                clone.pop();
+                }
+            }
+
+            if(InformacionPersonal.doctor == "dermatologa" || InformacionPersonal.doctor == "Dermatologa"){
+                for(int i=0; i<clone.size();i++){
+                    if(opcion3 == clone.front().fecha){
+                        for(int j=0; j<clone.size(); j++){
+                            if(opcion4 == clone.front().horario){
+                            band = false;
+                            }
+                        }
+                    }
+                clone.pop();
+                }
+            }
+
+            if(InformacionPersonal.doctor == "endoclinologo" || InformacionPersonal.doctor == "Endoclinologo"){
+                for(int i=0; i<clone.size();i++){
+                    if(opcion3 == clone.front().fecha){
+                     for(int j=0; j<clone.size(); j++){
+                            if(opcion4 == clone.front().horario){
+                            band = false;
+                            }
+                        }
+                    }
+                clone.pop();
+                }
+            }
+
+            if(InformacionPersonal.doctor == "cardiloga" || InformacionPersonal.doctor == "Cardiologa"){
+                for(int i=0; i<clone.size();i++){
+                    if(opcion3 == clone.front().fecha){
+                     for(int j=0; j<clone.size(); j++){
+                            if(opcion4 == clone.front().horario){
+                            band = false;
+                            }
+                        }
+                    }
+                clone.pop();
+                }
+            }
+            
+
+        if(band == true){
+            InformacionPersonal.fecha = opcion3;
+            InformacionPersonal.horario = opcion4;
+            status = false;
+        }
+        else{
+            cout<<"\nEste horario ya esta ocupado, por favor pruebe a otra  hora u otro dia\n";
+        }
+        system("pause");
+
+        }while(status);
+
+        Adultos.push(InformacionPersonal);
+    }
+
+
 }
