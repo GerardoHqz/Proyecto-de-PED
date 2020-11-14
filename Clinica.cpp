@@ -205,7 +205,6 @@ void AgendarCita()
             }
 
         } while(status);
-
         
 
         Ancianos.push(InformacionPersonal);
