@@ -48,7 +48,10 @@ int main()
         {
         case 1:
             AgendarCita();
-            system("pause");
+            break;
+
+        case 5:
+            status = false;
             break;
 
         default:
@@ -62,7 +65,8 @@ int main()
 
 void AgendarCita()
 {
-    bool status = true, status2 = true;
+    queue<citas>clone = Ancianos;
+    bool status = true, status2 = true, band = true;
     int opcion, opcion2;
     cout << "\nIngrese sus datos personales\n";
     cout << "\nNota: En caso de que sea menor de edad, ingrese el DUI de su representante\n";
@@ -74,138 +78,108 @@ void AgendarCita()
     cout << "DUI: ";
     cin >> InformacionPersonal.DUI;
 
-    if (InformacionPersonal.EdadPaciente > 60)
-    {
-        do
-        {
-            cout << "\nConsultas de lunes a sabados";
-            cout << "\nFechas disponibles del 2 al 23 de diciembre\n";
-            cout << "\nDigite la fecha: ";cin >> opcion2;
-            status2 = false;
+    cin.ignore();
+    cout<<"\nDoctores disponibles:\n";
+    cout<<"\nDr.Dueñas Medico General -------- $12";
+    cout<<"\nDra.Vega Pediatra --------------- $25";
+    cout<<"\nDra.Santiago Dermatologa -------- $25";
+    cout<<"\nDr.Henriquez Endoclinologo ------ $25";
+    cout<<"\nDra.Escobar Cardiologa ---------- $25\n";
+    cout<<"\nPor favor escribir la especialidad en letras minusculas";
+    cout<<"\nEscriba el nombre de la especialidad que desea: "; getline(cin,InformacionPersonal.doctor);
 
-
-
-
-
-        } while (status2);
-
-        do
-        {
+    if(InformacionPersonal.EdadPaciente > 60){
+        do{
+            band = true;
             system("cls");
-            cout << "\nConsultas de lunes a sabados";
-            cout << "\nFechas disponibles del 2 al 23 de diciembre\n";
-            cout << "\nDigite la fecha: "; cin>>opcion2;
-
-            cout << "\n                          ***HORARIOS***";
-            cout << "\nUsted al ser una persona de tercera edad dispone de los siguientes horarios: \n";
+            cout<<"\n             ****HORARIOS***";
+            cout<<"\nConsultas de lunes a sabados";
+            cout<<"\nFechas disponibles a partir del 2 al 23 de diciembre";
+            cout<<"\nDigite la fecha que desea: "; cin>>opcion;
+            cout<<"\nUsted al ser una persona de tercera edad dispone de los siguientes horarios: \n";
             cout << "1) 6:00 am - 6:30 am       2) 6:30 am - 7:00 am\n";
             cout << "3) 7:00 am - 7:30 am       4) 7:30 am - 8:00 am\n";
             cout << "5) 8:00 am - 8:30 am       6) 8:30 am - 9:00 am\n";
             cout << "7) 9:00 am - 9:30 am\n";
-            cout << "\nEscoja un horario: ";
-            cin >> opcion;
+            cout << "\nEscoja un horario: "; cin >> opcion2;
 
-            switch (opcion)
-            {
-            case 1:
-                if (InformacionPersonal.horario != 1 )
-                {
-                    InformacionPersonal.horario = 1;
-                    status = false;
+            if(InformacionPersonal.doctor == "Medico general" || InformacionPersonal.doctor == "medico general"){
+                for(int i=0; i<clone.size();i++){
+                    if(opcion == clone.front().fecha){
+                     for(int j=0; j<clone.size(); j++){
+                            if(opcion2 == clone.front().horario){
+                            band = false;
+                            }
+                        }
+                    }
+                clone.pop();
                 }
-                else
-                {
-                    cout << "\nEste horario no esta disponible, por favor ingrese otro horario.\n";
-                }
-                system("pause");
-                break;
-
-            case 2:
-                if (InformacionPersonal.horario != 2)
-                {
-                    InformacionPersonal.horario = 2;
-                    status = false;
-                }
-                else
-                {
-                    cout << "\nEste horario no esta disponible, por favor ingrese otro horario.\n";
-                }
-                system("pause");
-                break;
-
-            case 3:
-                if (InformacionPersonal.horario != 3)
-                {
-                    InformacionPersonal.horario = 3;
-                    status = false;
-                }
-                else
-                {
-                    cout << "\nEste horario no esta disponible, por favor ingrese otro horario.\n";
-                }
-                system("pause");
-                break;
-
-            case 4:
-                if (InformacionPersonal.horario != 4)
-                {
-                    InformacionPersonal.horario = 4;
-                    status = false;
-                }
-                else
-                {
-                    cout << "\nEste horario no esta disponible, por favor ingrese otro horario.\n";
-                }
-                system("pause");
-                break;
-
-            case 5:
-                if (InformacionPersonal.horario != 5)
-                {
-                    InformacionPersonal.horario = 5;
-                    status = false;
-                }
-                else
-                {
-                    cout << "\nEste horario no esta disponible, por favor ingrese otro horario.\n";
-                }
-                system("pause");
-                break;
-
-            case 6:
-                if (InformacionPersonal.horario != 6)
-                {
-                    InformacionPersonal.horario = 6;
-                    status = false;
-                }
-                else
-                {
-                    cout << "\nEste horario no esta disponible, por favor ingrese otro horario.\n";
-                }
-                system("pause");
-                break;
-
-            case 7:
-                if (InformacionPersonal.horario != 7)
-                {
-                    InformacionPersonal.horario = 7;
-                    status = false;
-                }
-                else
-                {
-                    cout << "\nEste horario no esta disponible, por favor ingrese otro horario.\n";
-                }
-                system("pause");
-                break;
-
-            default:
-                cout << "\nOpcion no valida\n";
-                system("pause");
-                break;
             }
 
-        } while(status);
-        
+            if(InformacionPersonal.doctor == "pediatra" || InformacionPersonal.doctor == "Pediatra"){
+                for(int i=0; i<clone.size();i++){
+                    if(opcion == clone.front().fecha){
+                     for(int j=0; j<clone.size(); j++){
+                            if(opcion2 == clone.front().horario){
+                            band = false;
+                            }
+                        }
+                    }
+                clone.pop();
+                }
+            }
+
+            if(InformacionPersonal.doctor == "dermatologa" || InformacionPersonal.doctor == "Dermatologa"){
+                for(int i=0; i<clone.size();i++){
+                    if(opcion == clone.front().fecha){
+                        for(int j=0; j<clone.size(); j++){
+                            if(opcion2 == clone.front().horario){
+                            band = false;
+                            }
+                        }
+                    }
+                clone.pop();
+                }
+            }
+
+            if(InformacionPersonal.doctor == "endoclinologo" || InformacionPersonal.doctor == "Endoclinologo"){
+                for(int i=0; i<clone.size();i++){
+                    if(opcion == clone.front().fecha){
+                     for(int j=0; j<clone.size(); j++){
+                            if(opcion2 == clone.front().horario){
+                            band = false;
+                            }
+                        }
+                    }
+                clone.pop();
+                }
+            }
+
+            if(InformacionPersonal.doctor == "cardiloga" || InformacionPersonal.doctor == "Cardiologa"){
+                for(int i=0; i<clone.size();i++){
+                    if(opcion == clone.front().fecha){
+                     for(int j=0; j<clone.size(); j++){
+                            if(opcion2 == clone.front().horario){
+                            band = false;
+                            }
+                        }
+                    }
+                clone.pop();
+                }
+            }
+            
+
+        if(band == true){
+            InformacionPersonal.fecha = opcion;
+            InformacionPersonal.horario = opcion2;
+            status = false;
+        }
+        else{
+            cout<<"\nEste horario ya esta ocupado, por favor pruebe a otra  hora u otro dia\n";
+        }
+        system("pause");
+
+        }while(status);
 
         Ancianos.push(InformacionPersonal);
     }
