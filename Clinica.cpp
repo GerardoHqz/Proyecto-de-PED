@@ -432,7 +432,7 @@ void PagarCita(){
     queue<citas>clone = Ancianos;
     queue<citas>clone2 = Adultos;
     queue<citas>clone3 = Nenes;
-    queue<citas>cloneX;
+    queue<citas>cloneX1;
 
     bool found = false, band = false, band2 = false, band3 = false;
     int pago = 0;
