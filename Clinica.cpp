@@ -2,6 +2,7 @@
 #include <queue>
 #include <string>
 #include <stdlib.h>
+#include <windows.h>
 using namespace std;
 
 struct Citas //se ingresan los datos de las citas
@@ -31,20 +32,29 @@ void Informacion();
 
 int main()
 {
+
     bool status = true;
     int opcion;
 
     do
     {
+        system("color 0f");
         system("cls");
-        cout << "-----*CLINICA LA FACHADA*-----\n";
+        cout << "CLINICA La Fachada\n";
         cout << "\n***MENU***\n";
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),9);
         cout << "1. Agendar una cita\n";
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),10);
         cout << "2. Pagar cita\n";
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),11);
         cout << "3. Cancelar una cita\n";
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),13);
         cout << "4. Horarios\n";
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),6);
         cout << "5. Informacion\n";
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),12);
         cout << "6. Salir \n";
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),15);
         cout << "Elija una opcion: ";
         cin >> opcion;
 
@@ -85,6 +95,10 @@ int main()
     return 0;
 }
 
+
+//<><><><><><><><><><><><><><><><><><><><><><><><><><><><>><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>><><><><><><><><><><><><><><><><><><><><><><><><><><><>//
+//Funcion encargada de Agendar La Cita
+
 void AgendarCita()
 {
     queue<citas>clone = Ancianos;
@@ -95,7 +109,8 @@ void AgendarCita()
     int opcion, opcion2;
     int opcion3, opcion4;
     int opcion5, opcion6;
-    
+
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),9);
     cout << "\nIngrese sus datos personales\n";
     cout << "\nNota: En caso de que sea menor de edad, ingrese el DUI de su representante\n";
     cin.ignore();
@@ -107,7 +122,8 @@ void AgendarCita()
     cout << "DUI: ";
     getline(cin,InformacionPersonal.DUI);
 
-    cout<<"\nDoctores disponibles:\n";
+    
+    cout<<"\n\n\nDoctores disponibles:\n";
     cout<<"\nDr.Duenas Medico General (G)-------- $12";
     cout<<"\nDra.Vega Pediatra (P)--------------- $25";
     cout<<"\nDra.Santiago Dermatologa (D)-------- $25";
@@ -132,9 +148,9 @@ void AgendarCita()
             cout << "7) 9:00 am - 9:30 am\n";
             cout << "\nEscoja un horario: "; cin >> opcion2;
 
-            if(InformacionPersonal.doctor == "M" || InformacionPersonal.doctor == "m"){
-                InformacionPersonal.pago = 12;
+            if(InformacionPersonal.doctor == "G" || InformacionPersonal.doctor == "g"){
                 for(int i=0; i<clone.size();i++){
+                    InformacionPersonal.pago = 12;
                     if(opcion == clone.front().fecha){
                         for(int j=0; j<clone.size(); j++){
                             if(opcion2 == clone.front().horario){
@@ -147,8 +163,8 @@ void AgendarCita()
             }
 
             if(InformacionPersonal.doctor == "p" || InformacionPersonal.doctor == "P"){
-                InformacionPersonal.pago = 25;
                 for(int i=0; i<clone.size();i++){
+                    InformacionPersonal.pago = 25;
                     if(opcion == clone.front().fecha){
                      for(int j=0; j<clone.size(); j++){
                             if(opcion2 == clone.front().horario){
@@ -161,8 +177,8 @@ void AgendarCita()
             }
 
             if(InformacionPersonal.doctor == "d" || InformacionPersonal.doctor == "D"){
-                InformacionPersonal.pago = 25;
                 for(int i=0; i<clone.size();i++){
+                    InformacionPersonal.pago = 25;
                     if(opcion == clone.front().fecha){
                         for(int j=0; j<clone.size(); j++){
                             if(opcion2 == clone.front().horario){
@@ -175,8 +191,8 @@ void AgendarCita()
             }
 
             if(InformacionPersonal.doctor == "e" || InformacionPersonal.doctor == "E"){
-                InformacionPersonal.pago = 25;
                 for(int i=0; i<clone.size();i++){
+                    InformacionPersonal.pago = 25;
                     if(opcion == clone.front().fecha){
                      for(int j=0; j<clone.size(); j++){
                             if(opcion2 == clone.front().horario){
@@ -189,8 +205,8 @@ void AgendarCita()
             }
 
             if(InformacionPersonal.doctor == "c" || InformacionPersonal.doctor == "C"){
-                InformacionPersonal.pago = 25;
                 for(int i=0; i<clone.size();i++){
+                    InformacionPersonal.pago = 25;
                     if(opcion == clone.front().fecha){
                     for(int j=0; j<clone.size(); j++){
                             if(opcion2 == clone.front().horario){
@@ -200,6 +216,7 @@ void AgendarCita()
                     }
                     clone.pop();
                 }
+                InformacionPersonal.pago = 25;
             }
             
 
@@ -236,7 +253,7 @@ void AgendarCita()
             cout << "7) 4:30 pm - 5:00 pm\n";
             cout << "\nEscoja un horario: "; cin >> opcion4;
 
-            if(InformacionPersonal.doctor == "m" || InformacionPersonal.doctor == "M"){
+            if(InformacionPersonal.doctor == "g" || InformacionPersonal.doctor == "G"){
                 InformacionPersonal.pago = 12;
                 for(int i=0; i<clone.size();i++){
                     if(opcion3 == clone.front().fecha){
@@ -338,7 +355,7 @@ void AgendarCita()
             cout << "5) 11:30 pm - 12:00 pm      6) 12:00 pm - 12:30 pm\n";
             cout << "\nEscoja un horario: "; cin >> opcion6;
 
-            if(InformacionPersonal.doctor == "m" || InformacionPersonal.doctor == "M"){
+            if(InformacionPersonal.doctor == "g" || InformacionPersonal.doctor == "G"){
                 InformacionPersonal.pago = 12;
                 for(int i=0; i<clone.size();i++){
                     if(opcion5 == clone.front().fecha){
@@ -427,6 +444,10 @@ void AgendarCita()
 
 }
 
+
+//<><><><><><><><><><><><><><><><><><><><><><><><><><><><>><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>><><><><><><><><><><><><><><><><><><><><><><><><><><><>//
+//Funcion encargada de Pagar la cita.
+
 void PagarCita(){
     queue<citas>clone = Ancianos;
     queue<citas>clone2 = Adultos;
@@ -438,6 +459,7 @@ void PagarCita(){
     string ElementoBuscar;
     string Tarjeta;
 
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),10);
     cout<<"\n**Pago de cita**\n";
     cin.ignore();
     cout<<"Digite su DUI: "; getline(cin,ElementoBuscar);
@@ -451,6 +473,9 @@ void PagarCita(){
             auxiliar.fecha = clone.front().fecha;
             auxiliar.pago = clone.front().pago;
             clone.pop();
+            while (!Ancianos.empty()){
+                Ancianos.pop();
+            }
         }
         else{
             clone.pop();
@@ -467,6 +492,9 @@ void PagarCita(){
             auxiliar.fecha = clone2.front().fecha;
             auxiliar.pago = clone2.front().pago;
             clone2.pop();
+            while (!Adultos.empty()){
+                Adultos.pop();
+            }
         }
         else{
             clone2.pop();
@@ -482,6 +510,9 @@ void PagarCita(){
             auxiliar.fecha = clone3.front().fecha;
             auxiliar.pago = clone3.front().pago;
             clone3.pop();
+            while (!Nenes.empty()){
+                Nenes.pop();
+            }
         }
         else{
           clone3.pop();
@@ -516,11 +547,16 @@ void PagarCita(){
       cout<<"\nIngrese su tarjeta de debito o credito: "; getline(cin,Tarjeta);
       cout<<"\nProcesando pago.....\n";
       cout<<"\nPago realizado con exito!\n";
-    }
-    system("pause");
+    }  
+    system("pause"); 
 }
 
+
+//<><><><><><><><><><><><><><><><><><><><><><><><><><><><>><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>><><><><><><><><><><><><><><><><><><><><><><><><><><><>//
+//Funcion encargada de mostrar los horarios.
+
 void Horarios(){
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),13);
     system("cls");
     cout<< "***************HORARIOS***************\n";
      cout<<"\nConsultas de lunes a sabados";
@@ -549,19 +585,123 @@ void Horarios(){
     system("pause");        
 }
 
+
+
+//<><><><><><><><><><><><><><><><><><><><><><><><><><><><>><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>><><><><><><><><><><><><><><><><><><><><><><><><><><><>//
+//Funcion encargada de Cancelar la cita pre agendada.
+
 void CancelarCita(){
-    
+    queue<citas>clone = Ancianos;
+    queue<citas>clone2 = Adultos;
+    queue<citas>clone3 = Nenes;
+    citas auxiliar ;
 
+    bool found = false, band = false, band2 = false, band3 = false, status = true;
+    int pago;
+    string ElementoBuscar;
+    string Tarjeta;
 
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),11);
+    cout<<"\n**Cancelar cita agendada**\n";
+    cin.ignore();
+    cout<<"Digite su DUI: "; getline(cin,ElementoBuscar);
 
-    
+    while (!clone.empty()) {
+        if (clone.front().DUI == ElementoBuscar){
+            band = true;
+            found = true;
+            auxiliar.NombrePaciente = clone.front().NombrePaciente;
+            auxiliar.doctor = clone.front().doctor;
+            auxiliar.fecha = clone.front().fecha;
+            auxiliar.pago = clone.front().pago;
+            clone.pop();
+            while (!Ancianos.empty()){
+                Ancianos.pop();
+            }
+        }
+        else{
+            clone.pop();
+        }
+
+    }
+
+    while (!clone2.empty()) {
+        if (clone2.front().DUI == ElementoBuscar){
+            band2 = true;
+            found = true;
+            auxiliar.NombrePaciente = clone2.front().NombrePaciente;
+            auxiliar.doctor = clone2.front().doctor;
+            auxiliar.fecha = clone2.front().fecha;
+            auxiliar.pago = clone2.front().pago;
+            clone2.pop();
+            while (!Adultos.empty()){
+                Adultos.pop();
+            }
+        }
+        else{
+            clone2.pop();
+        }
+    }
+
+    while (!clone3.empty()) {
+        if (clone3.front().DUI == ElementoBuscar){
+            band3 = true;
+            found = true;
+            auxiliar.NombrePaciente = clone3.front().NombrePaciente;
+            auxiliar.doctor = clone3.front().doctor;
+            auxiliar.fecha = clone3.front().fecha;
+            auxiliar.pago = clone3.front().pago;
+            clone3.pop();
+            while (!Nenes.empty()){
+                Nenes.pop();
+            }
+        }
+        else{
+          clone3.pop();
+        }
+    }
+
+    if (found == false) {
+      cout << "\nNo se encontro una cita registrada con este DUI\n" << endl;
+    }
+    else{
+      if(band == true){
+        cout<<"\n**DATOS DE LA CITA**\n";
+        cout<<"\nNombre: "<<auxiliar.NombrePaciente;
+        cout<<"\nDoctor: "<<auxiliar.doctor; 
+        cout<<"\nDia: "<<auxiliar.fecha;
+        cout<<"\nTotal: $"<<auxiliar.pago;
+      }
+      else if(band2 == true){
+        cout<<"\n**DATOS DE LA CITA**\n";
+        cout<<"\nNombre: "<<auxiliar.NombrePaciente;
+        cout<<"\nDoctor: "<<auxiliar.doctor; 
+        cout<<"\nDia: "<<auxiliar.fecha;
+        cout<<"\nTotal: $"<<auxiliar.pago;
+      }
+      else if(band3 == true){
+        cout<<"\n**DATOS DE LA CITA**\n";
+        cout<<"\nNombre: "<<auxiliar.NombrePaciente;
+        cout<<"\nDoctor: "<<auxiliar.doctor; 
+        cout<<"\nDia: "<<auxiliar.fecha;
+        cout<<"\nTotal: $"<<auxiliar.pago;
+      }    
+      cout<<"\nLa cita agendada a nombre de " <<auxiliar.NombrePaciente;
+      cout<<" sera cancelada.\n\n";
+      cout<<"\nCancelando cita agendada.....\n";
+      cout<<"\nCita Cancelada, gracias.\n\n";
+    }
+    system("pause");
 }
 
+
+//<><><><><><><><><><><><><><><><><><><><><><><><><><><><>><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>><><><><><><><><><><><><><><><><><><><><><><><><><><><>//
+//Funcion encargada de mostrar la informacion del negocio.
 void Informacion(){
     
     bool status = true;
     int opcion;
-    
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),6);
     do
     {
         system("cls");
@@ -575,7 +715,9 @@ void Informacion(){
         cout << " 3. Mision \n";
         cout << " 4. Vision \n";
         cout << " 5. Valores Institucionales \n";
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),4);
         cout << " 6. Salir \n ";
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),6);
         cout << "Elija una opcion:  "; cin>>opcion;
 
         switch(opcion)
