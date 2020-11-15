@@ -8,10 +8,11 @@ struct Citas //se ingresan los datos de las citas
 {
     string NombrePaciente;
     int EdadPaciente;
-    int DUI;
+    string DUI;
     int horario;
     int horarioAdulto;
     int horarioNenes;
+    int pago;
     int fecha;
     string doctor;
 };
@@ -23,6 +24,7 @@ queue<citas> Nenes;
 citas InformacionPersonal;
 
 void AgendarCita();
+void PagarCita();
 void CancelarCita();
 void Horarios();
 void Informacion();
@@ -36,13 +38,14 @@ int main()
     do
     {
         system("cls");
-        cout << "CLINICA ***\n";
+        cout << "CLINICA La Fachada\n";
         cout << "\n***MENU***\n";
         cout << "1. Agendar una cita\n";
-        cout << "2. Cancelar una cita\n";
-        cout << "3. Horarios\n";
-        cout << "4. Informacion\n";
-        cout << "5. Salir \n";
+        cout << "2. Pagar cita\n";
+        cout << "3. Cancelar una cita\n";
+        cout << "4. Horarios\n";
+        cout << "5. Informacion\n";
+        cout << "6. Salir \n";
         cout << "Elija una opcion: ";
         cin >> opcion;
 
@@ -52,11 +55,29 @@ int main()
             AgendarCita();
             break;
 
+        case 2:
+            PagarCita();
+            break;
+        
+        case 3:
+            CancelarCita();
+            break;
+        
+        case 4:
+            Horarios();
+            break;
+
         case 5:
+            Informacion();
+            break;
+
+        case 6:
             status = false;
+            cout<<"\nClinica La Fachada te desea un buen dia\n";
             break;
 
         default:
+            cout<<"\nOpcion no valida\n";
             break;
         }
 
@@ -82,10 +103,10 @@ void AgendarCita()
     getline(cin, InformacionPersonal.NombrePaciente);
     cout << "Edad: ";
     cin >> InformacionPersonal.EdadPaciente;
-    cout << "DUI: ";
-    cin >> InformacionPersonal.DUI;
-
     cin.ignore();
+    cout << "DUI: ";
+    getline(cin,InformacionPersonal.DUI);
+
     cout<<"\nDoctores disponibles:\n";
     cout<<"\nDr.Duenas Medico General (G)-------- $12";
     cout<<"\nDra.Vega Pediatra (P)--------------- $25";
@@ -96,7 +117,7 @@ void AgendarCita()
     cout<<"\nEscriba el nombre de la especialidad que desea: "; getline(cin,InformacionPersonal.doctor);
 
 //-----------------------------------ANCIANOS---------------------------------//
-    if(InformacionPersonal.EdadPaciente >= 60){
+    if(InformacionPersonal.EdadPaciente >= 60 && InformacionPersonal.EdadPaciente < 115){
         do{
             band = true;
             system("cls");
@@ -111,7 +132,7 @@ void AgendarCita()
             cout << "7) 9:00 am - 9:30 am\n";
             cout << "\nEscoja un horario: "; cin >> opcion2;
 
-            if(InformacionPersonal.doctor == "Medico general" || InformacionPersonal.doctor == "medico general"){
+            if(InformacionPersonal.doctor == "M" || InformacionPersonal.doctor == "m"){
                 for(int i=0; i<clone.size();i++){
                     if(opcion == clone.front().fecha){
                      for(int j=0; j<clone.size(); j++){
@@ -122,9 +143,10 @@ void AgendarCita()
                     }
                 clone.pop();
                 }
+                InformacionPersonal.pago = 12;
             }
 
-            if(InformacionPersonal.doctor == "pediatra" || InformacionPersonal.doctor == "Pediatra"){
+            if(InformacionPersonal.doctor == "p" || InformacionPersonal.doctor == "P"){
                 for(int i=0; i<clone.size();i++){
                     if(opcion == clone.front().fecha){
                      for(int j=0; j<clone.size(); j++){
@@ -135,9 +157,11 @@ void AgendarCita()
                     }
                 clone.pop();
                 }
+                InformacionPersonal.pago = 25;
+
             }
 
-            if(InformacionPersonal.doctor == "dermatologa" || InformacionPersonal.doctor == "Dermatologa"){
+            if(InformacionPersonal.doctor == "d" || InformacionPersonal.doctor == "D"){
                 for(int i=0; i<clone.size();i++){
                     if(opcion == clone.front().fecha){
                         for(int j=0; j<clone.size(); j++){
@@ -148,9 +172,10 @@ void AgendarCita()
                     }
                 clone.pop();
                 }
+                InformacionPersonal.pago = 25;
             }
 
-            if(InformacionPersonal.doctor == "endoclinologo" || InformacionPersonal.doctor == "Endoclinologo"){
+            if(InformacionPersonal.doctor == "e" || InformacionPersonal.doctor == "E"){
                 for(int i=0; i<clone.size();i++){
                     if(opcion == clone.front().fecha){
                      for(int j=0; j<clone.size(); j++){
@@ -161,9 +186,10 @@ void AgendarCita()
                     }
                 clone.pop();
                 }
+                InformacionPersonal.pago = 25;
             }
 
-            if(InformacionPersonal.doctor == "cardiloga" || InformacionPersonal.doctor == "Cardiologa"){
+            if(InformacionPersonal.doctor == "c" || InformacionPersonal.doctor == "C"){
                 for(int i=0; i<clone.size();i++){
                     if(opcion == clone.front().fecha){
                      for(int j=0; j<clone.size(); j++){
@@ -174,6 +200,7 @@ void AgendarCita()
                     }
                 clone.pop();
                 }
+                InformacionPersonal.pago = 25;
             }
             
 
@@ -181,9 +208,10 @@ void AgendarCita()
             InformacionPersonal.fecha = opcion;
             InformacionPersonal.horario = opcion2;
             status = false;
+            cout<<"\nCita registrada con exito!, te esperamos\n";
         }
         else{
-            cout<<"\nEste horario ya esta ocupado, por favor pruebe a otra  hora u otro dia\n";
+            cout<<"\nEste horario ya esta ocupado, por favor ingrese a otra  hora u otro dia\n";
         }
         system("pause");
 
@@ -209,7 +237,7 @@ void AgendarCita()
             cout << "7) 4:30 pm - 5:00 pm\n";
             cout << "\nEscoja un horario: "; cin >> opcion4;
 
-            if(InformacionPersonal.doctor == "Medico general" || InformacionPersonal.doctor == "medico general"){
+            if(InformacionPersonal.doctor == "m" || InformacionPersonal.doctor == "M"){
                 for(int i=0; i<clone.size();i++){
                     if(opcion3 == clone.front().fecha){
                      for(int j=0; j<clone.size(); j++){
@@ -220,9 +248,10 @@ void AgendarCita()
                     }
                 clone.pop();
                 }
+                InformacionPersonal.pago = 12;
             }
 
-            if(InformacionPersonal.doctor == "pediatra" || InformacionPersonal.doctor == "Pediatra"){
+            if(InformacionPersonal.doctor == "p" || InformacionPersonal.doctor == "P"){
                 for(int i=0; i<clone.size();i++){
                     if(opcion3 == clone.front().fecha){
                      for(int j=0; j<clone.size(); j++){
@@ -233,9 +262,10 @@ void AgendarCita()
                     }
                 clone.pop();
                 }
+                InformacionPersonal.pago = 25;
             }
 
-            if(InformacionPersonal.doctor == "dermatologa" || InformacionPersonal.doctor == "Dermatologa"){
+            if(InformacionPersonal.doctor == "d" || InformacionPersonal.doctor == "D"){
                 for(int i=0; i<clone.size();i++){
                     if(opcion3 == clone.front().fecha){
                         for(int j=0; j<clone.size(); j++){
@@ -246,9 +276,10 @@ void AgendarCita()
                     }
                 clone.pop();
                 }
+                InformacionPersonal.pago = 25;
             }
 
-            if(InformacionPersonal.doctor == "endoclinologo" || InformacionPersonal.doctor == "Endoclinologo"){
+            if(InformacionPersonal.doctor == "e" || InformacionPersonal.doctor == "E"){
                 for(int i=0; i<clone.size();i++){
                     if(opcion3 == clone.front().fecha){
                      for(int j=0; j<clone.size(); j++){
@@ -259,9 +290,10 @@ void AgendarCita()
                     }
                 clone.pop();
                 }
+                InformacionPersonal.pago = 25;
             }
 
-            if(InformacionPersonal.doctor == "cardiloga" || InformacionPersonal.doctor == "Cardiologa"){
+            if(InformacionPersonal.doctor == "c" || InformacionPersonal.doctor == "C"){
                 for(int i=0; i<clone.size();i++){
                     if(opcion3 == clone.front().fecha){
                      for(int j=0; j<clone.size(); j++){
@@ -272,6 +304,7 @@ void AgendarCita()
                     }
                 clone.pop();
                 }
+                InformacionPersonal.pago = 25;
             }
             
 
@@ -279,9 +312,10 @@ void AgendarCita()
             InformacionPersonal.fecha = opcion3;
             InformacionPersonal.horarioAdulto = opcion4;
             status = false;
+            cout<<"\nCita registrada con exito!, te esperamos\n";
         }
         else{
-            cout<<"\nEste horario ya esta ocupado, por favor pruebe a otra  hora u otro dia\n";
+            cout<<"\nEste horario ya esta ocupado, por favor ingrese a otra  hora u otro dia\n";
         }
         system("pause");
 
@@ -299,13 +333,13 @@ void AgendarCita()
             cout<<"\nConsultas de lunes a sabados";
             cout<<"\nFechas disponibles a partir del 2 al 23 de diciembre";
             cout<<"\nDigite la fecha que desea: "; cin>>opcion5;
-            cout<<"\nUsted al ser una persona adulta dispone de los siguientes horarios: \n";
+            cout<<"\nUsted al ser una persona menor de edad dispone de los siguientes horarios: \n";
             cout << "1) 9:30 pm - 10:00 pm       2) 10:00 pm - 10:30 pm\n";
             cout << "3) 10:30 pm - 11:00 pm      4) 11:00 pm - 11:30 pm\n";
             cout << "5) 11:30 pm - 12:00 pm      6) 12:00 pm - 12:30 pm\n";
             cout << "\nEscoja un horario: "; cin >> opcion6;
 
-            if(InformacionPersonal.doctor == "Medico general" || InformacionPersonal.doctor == "medico general"){
+            if(InformacionPersonal.doctor == "m" || InformacionPersonal.doctor == "M"){
                 for(int i=0; i<clone.size();i++){
                     if(opcion5 == clone.front().fecha){
                      for(int j=0; j<clone.size(); j++){
@@ -316,9 +350,10 @@ void AgendarCita()
                     }
                 clone.pop();
                 }
+                InformacionPersonal.pago = 25;
             }
 
-            if(InformacionPersonal.doctor == "pediatra" || InformacionPersonal.doctor == "Pediatra"){
+            if(InformacionPersonal.doctor == "p" || InformacionPersonal.doctor == "P"){
                 for(int i=0; i<clone.size();i++){
                     if(opcion5 == clone.front().fecha){
                      for(int j=0; j<clone.size(); j++){
@@ -329,9 +364,10 @@ void AgendarCita()
                     }
                 clone.pop();
                 }
+                InformacionPersonal.pago = 25;
             }
 
-            if(InformacionPersonal.doctor == "dermatologa" || InformacionPersonal.doctor == "Dermatologa"){
+            if(InformacionPersonal.doctor == "d" || InformacionPersonal.doctor == "D"){
                 for(int i=0; i<clone.size();i++){
                     if(opcion5 == clone.front().fecha){
                         for(int j=0; j<clone.size(); j++){
@@ -342,9 +378,10 @@ void AgendarCita()
                     }
                 clone.pop();
                 }
+                InformacionPersonal.pago = 25;
             }
 
-            if(InformacionPersonal.doctor == "endoclinologo" || InformacionPersonal.doctor == "Endoclinologo"){
+            if(InformacionPersonal.doctor == "e" || InformacionPersonal.doctor == "E"){
                 for(int i=0; i<clone.size();i++){
                     if(opcion5 == clone.front().fecha){
                      for(int j=0; j<clone.size(); j++){
@@ -355,9 +392,10 @@ void AgendarCita()
                     }
                 clone.pop();
                 }
+                InformacionPersonal.pago = 25;
             }
 
-            if(InformacionPersonal.doctor == "cardiloga" || InformacionPersonal.doctor == "Cardiologa"){
+            if(InformacionPersonal.doctor == "c" || InformacionPersonal.doctor == "C"){
                 for(int i=0; i<clone.size();i++){
                     if(opcion5 == clone.front().fecha){
                      for(int j=0; j<clone.size(); j++){
@@ -368,6 +406,7 @@ void AgendarCita()
                     }
                 clone.pop();
                 }
+                InformacionPersonal.pago = 25;
             }
             
 
@@ -375,9 +414,10 @@ void AgendarCita()
             InformacionPersonal.fecha = opcion5;
             InformacionPersonal.horarioNenes = opcion6;
             status = false;
+            cout<<"\nCita registrada con exito!, prosiga a la opcion de pgar cita.\n";
         }
-        else{
-            cout<<"\nEste horario ya esta ocupado, por favor pruebe a otra  hora u otro dia\n";
+        else{    
+            cout<<"\nEste horario ya esta ocupado, por favor ingrese a otra  hora u otro dia\n";
         }
         system("pause");
 
@@ -386,4 +426,207 @@ void AgendarCita()
         Nenes.push(InformacionPersonal);
     }
 
+}
+
+void PagarCita(){
+    queue<citas>clone = Ancianos;
+    queue<citas>clone2 = Adultos;
+    queue<citas>clone3 = Nenes;
+    queue<citas>cloneX;
+
+    bool found = false, band = false, band2 = false, band3 = false;
+    int pago = 0;
+    string ElementoBuscar;
+    string Tarjeta;
+
+    cout<<"\n**Cancelacion de cita**\n";
+    cin.ignore();
+    cout<<"Digite su DUI: "; getline(cin,ElementoBuscar);
+
+    while (!clone.empty()) {
+        if (clone.front().DUI == ElementoBuscar){
+            cout<<"\n**DATOS DE LA CITA**\n";
+            cout<<"\nNombre: "<<clone.front().NombrePaciente;
+            cout<<"\nDoctor: "<<clone.front().doctor; 
+            cout<<"\nDia: "<<clone.front().fecha;
+            cout<<"\nCosto : $"<<clone.front().pago;
+            found = true;
+        }
+        else{
+            clone.pop();
+        }
+    }
+
+    while (!clone2.empty()) {
+        if (clone2.front().DUI == ElementoBuscar){
+            cout<<"\n**DATOS DE LA CITA**\n";
+            cout<<"\nNombre: "<<clone2.front().NombrePaciente;
+            cout<<"\nDoctor: "<<clone2.front().doctor; 
+            cout<<"\nDia: "<<clone2.front().fecha;
+            cout<<"\nCosto : $"<<clone2.front().pago;
+            found = true;
+        }
+        else{
+            clone2.pop();
+        }
+    }
+
+    while (!clone3.empty()) {
+        if (clone3.front().DUI == ElementoBuscar){
+            cout<<"\n**DATOS DE LA CITA**\n";
+            cout<<"\nNombre: "<<clone3.front().NombrePaciente;
+            cout<<"\nDoctor: "<<clone3.front().doctor; 
+            cout<<"\nDia: "<<clone3.front().fecha;
+            cout<<"\nCosto : $"<<clone3.front().pago;
+            found = true;
+        }
+        else{
+            clone3.pop();
+        }
+    }
+
+    if (!found) {
+        cout << "\nNo se encontró una cita registrada con este DUI\n" << endl;
+    }
+    else{
+        cout<<"\nIngrese su tarjeta de debito o credito: "; getline(cin,Tarjeta);
+        cout<<"\nProcesando pago.....\n";
+        cout<<"\nPago realizado con exito!\n";
+    }    
+}
+
+void Horarios(){
+    system("cls");
+    cout<< "***************HORARIOS***************\n";
+     cout<<"\nConsultas de lunes a sabados";
+      cout<<"\nFechas disponibles a partir del 2 al 23 de diciembre";
+      cout<<"\nContamos con los siguientes horarios para que tenga la mejor atencion:";
+         cout<< "\n-----Adultos  de la tercera Edad-----\n";
+    
+            cout << "\n1) 6:00 am - 6:30 am       2) 6:30 am - 7:00 am\n";
+            cout << "3) 7:00 am - 7:30 am       4) 7:30 am - 8:00 am\n";
+            cout << "5) 8:00 am - 8:30 am       6) 8:30 am - 9:00 am\n";
+            cout << "7) 9:00 am - 9:30 am\n";
+            
+         cout<<"\n-----Menores de Edad -----\n" ;
+         
+           cout << "\n1) 9:30 pm - 10:00 pm       2) 10:00 pm - 10:30 pm\n";
+            cout << "3) 10:30 pm - 11:00 pm      4) 11:00 pm - 11:30 pm\n";
+            cout << "5) 11:30 pm - 12:00 pm      6) 12:00 pm - 12:30 pm\n";
+            
+         cout<<"\n-----Adultos-----\n"; 
+
+            cout << "\n1) 1:30 pm - 2:00 pm       2) 2:00 pm - 2:30 pm\n";
+            cout << "3) 2:30 pm - 3:00 pm       4) 3:00 pm - 3:30 pm\n";
+            cout << "5) 3:30 pm - 4:00 pm       6) 4:00 pm - 4:30 pm\n";
+            cout << "7) 4:30 pm - 5:00 pm\n";
+            
+    system("pause");        
+}
+
+void CancelarCita(){
+    
+
+
+
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+void Informacion(){
+    
+    bool status = true;
+    int opcion;
+    
+    do
+    {
+        system("cls");
+        cout << "\n---------INFORMACION---------\n";
+        cout << " Bienvenidos a la Clinica La Fachada";
+        cout << "\n Nos complace atenderte de lunes a sabados los dias restantes del 2020  B)"; 
+        cout << "\n No hay precio para tu salud :)\n";
+        cout << "\n-----------MENU DE INFORMACION-----------\n";
+        cout << " 1. Acerca de la  clinica \n";
+        cout << " 2. Acerca del Personal \n";
+        cout << " 3. Mision \n";
+        cout << " 4. Vision \n";
+        cout << " 5. Valores Institucionales \n";
+        cout << " 6. Salir \n ";
+        cout << "Elija una opcion:  "; cin>>opcion;
+
+        switch(opcion)
+        {
+        case 1:
+            cout <<"\n --------------------------------Clinica La Fachada----------------------------------- \n";
+            cout <<" Clinica La Fachada, fundada en Noviembre del 2020 por los excelentes doctores de origen\n";
+            cout <<" Aleman ,Italiano, Ruso y Coreano. La clinica nace con el fin de apoyar a la poblacion, \n";
+            cout <<" promoviendo el bienestar social a traves de la salud.\n\n";
+            system("pause");
+            break;
+        case 2:
+            cout <<"\n -------------------------------- Profesionales -------------------------------------- \n";
+            cout << " Nuestros medicos que estan al tanto de tu salud son profecionales graduados y con doctorados\n"; 
+            cout << " de las Universidades y mas TOP del mundo\n\n";
+            cout << " *Dr.Duenas--Medico General--\n";
+            cout << " Graduado de Harvard en medicina general, con doctorado en Oxford, siempre al tanto de tu salud\n\n";
+            cout << " *Dra.Vega--Pediatra--\n";
+            cout << " Graduada de Stanford en pediatria, con maestria y doctorado del TEC de monterrey, vela por la salud de tus crias\n\n";
+            cout << " *Dra.Santiago--Dermatologa--\n";
+            cout << " Doctorada en Dermatologia de Cambridge, busca siempre el bien de tu piel para que se vea sexy y limpia\n\n";
+            cout << " *Dr.Henriquez--Endoclinologo--\n";
+            cout << " Graduado de Massachusetts Institute of Technology (MIT) de Endocrinologia avanzada, busca el bien de tu cuerpo\n\n";
+            cout << " *Dra.Escobar--Cardiologa--\n";
+            cout << " Doctorada de Trinity College Dublin de Cardiologia, casada con el apuesto Dr.Henriquez, siempre al tanto su salud\n\n";
+            cout << " *Antonio--Conserje--\n";
+            cout << " El es el conserje, grande antonio.\n\n";
+            
+            system("pause");
+            break;
+        case 3:
+            cout << "\n--------------------------------------------MISION----------------------------------------";
+            cout << "\n Brindar servicios de salud primaria y promover la educacion con la calidad y calidez en funcion social\n\n";
+            system("pause");
+            break;
+        case 4:
+            cout << "\n--------------------------------------------VISION----------------------------------------";
+            cout << "\n Impulsar el desarrollo humano a traves de la salud en medio de una pandemia mundial\n\n";
+            system("pause");
+            break;
+        case 5:
+            cout << "\n--------------------------------------VALORES INSTITUCIONALES-------------------------------\n";
+            cout << "INTEGRIDAD: Transparencia en todo lo que hacemos\n";
+            cout << "CALIDEZ: Trato amable con empatia\n";
+            cout << "PROFESIONALISMO: Trabajo con responsabilidad y confianza\n";
+            cout << "ETICA PROFESIONAL: Confidencialidad en el servicio\n";
+            cout << "TRABAJO EN EQUIPO: Unidos somos mas efectivos\n";
+            cout << "EQUIDAD: Trato justo y digno para todos\n";
+            system("pause");
+            break;
+        case 6:
+            status = false;
+            system("pause");
+            break;
+        default:
+            cout << "\nOpcion no valida\n";
+            system("pause");
+            break;
+        }
+    } while (status);
+    
+
+
+    
 }
