@@ -31,14 +31,13 @@ void Informacion();
 
 int main()
 {
-
     bool status = true;
     int opcion;
 
     do
     {
         system("cls");
-        cout << "CLINICA La Fachada\n";
+        cout << "-----*CLINICA LA FACHADA*-----\n";
         cout << "\n***MENU***\n";
         cout << "1. Agendar una cita\n";
         cout << "2. Pagar cita\n";
@@ -96,6 +95,7 @@ void AgendarCita()
     int opcion, opcion2;
     int opcion3, opcion4;
     int opcion5, opcion6;
+    
     cout << "\nIngrese sus datos personales\n";
     cout << "\nNota: En caso de que sea menor de edad, ingrese el DUI de su representante\n";
     cin.ignore();
@@ -133,8 +133,8 @@ void AgendarCita()
             cout << "\nEscoja un horario: "; cin >> opcion2;
 
             if(InformacionPersonal.doctor == "M" || InformacionPersonal.doctor == "m"){
+                InformacionPersonal.pago = 12;
                 for(int i=0; i<clone.size();i++){
-                    InformacionPersonal.pago = 12;
                     if(opcion == clone.front().fecha){
                         for(int j=0; j<clone.size(); j++){
                             if(opcion2 == clone.front().horario){
@@ -161,6 +161,7 @@ void AgendarCita()
             }
 
             if(InformacionPersonal.doctor == "d" || InformacionPersonal.doctor == "D"){
+                InformacionPersonal.pago = 25;
                 for(int i=0; i<clone.size();i++){
                     if(opcion == clone.front().fecha){
                         for(int j=0; j<clone.size(); j++){
@@ -171,7 +172,6 @@ void AgendarCita()
                     }
                     clone.pop();
                 }
-                InformacionPersonal.pago = 25;
             }
 
             if(InformacionPersonal.doctor == "e" || InformacionPersonal.doctor == "E"){
@@ -189,6 +189,7 @@ void AgendarCita()
             }
 
             if(InformacionPersonal.doctor == "c" || InformacionPersonal.doctor == "C"){
+                InformacionPersonal.pago = 25;
                 for(int i=0; i<clone.size();i++){
                     if(opcion == clone.front().fecha){
                     for(int j=0; j<clone.size(); j++){
@@ -199,7 +200,6 @@ void AgendarCita()
                     }
                     clone.pop();
                 }
-                InformacionPersonal.pago = 25;
             }
             
 
@@ -431,10 +431,10 @@ void PagarCita(){
     queue<citas>clone = Ancianos;
     queue<citas>clone2 = Adultos;
     queue<citas>clone3 = Nenes;
-    queue<citas>cloneX;
+    citas auxiliar ;
 
     bool found = false, band = false, band2 = false, band3 = false, status = true;
-    int pago = 0;
+    int pago;
     string ElementoBuscar;
     string Tarjeta;
 
@@ -446,10 +446,10 @@ void PagarCita(){
         if (clone.front().DUI == ElementoBuscar){
             band = true;
             found = true;
-            cloneX.front().NombrePaciente = clone.front().NombrePaciente;
-            cloneX.front().doctor = clone.front().doctor;
-            cloneX.front().fecha = clone.front().fecha;
-            cloneX.front().pago = clone.front().pago;
+            auxiliar.NombrePaciente = clone.front().NombrePaciente;
+            auxiliar.doctor = clone.front().doctor;
+            auxiliar.fecha = clone.front().fecha;
+            auxiliar.pago = clone.front().pago;
             clone.pop();
         }
         else{
@@ -462,10 +462,10 @@ void PagarCita(){
         if (clone2.front().DUI == ElementoBuscar){
             band2 = true;
             found = true;
-            cloneX.front().NombrePaciente = clone2.front().NombrePaciente;
-            cloneX.front().doctor = clone2.front().doctor;
-            cloneX.front().fecha = clone2.front().fecha;
-            cloneX.front().pago = clone2.front().pago;
+            auxiliar.NombrePaciente = clone2.front().NombrePaciente;
+            auxiliar.doctor = clone2.front().doctor;
+            auxiliar.fecha = clone2.front().fecha;
+            auxiliar.pago = clone2.front().pago;
             clone2.pop();
         }
         else{
@@ -477,10 +477,10 @@ void PagarCita(){
         if (clone3.front().DUI == ElementoBuscar){
             band3 = true;
             found = true;
-            cloneX.front().NombrePaciente = clone3.front().NombrePaciente;
-            cloneX.front().doctor = clone3.front().doctor;
-            cloneX.front().fecha = clone3.front().fecha;
-            cloneX.front().pago = clone3.front().pago;
+            auxiliar.NombrePaciente = clone3.front().NombrePaciente;
+            auxiliar.doctor = clone3.front().doctor;
+            auxiliar.fecha = clone3.front().fecha;
+            auxiliar.pago = clone3.front().pago;
             clone3.pop();
         }
         else{
@@ -494,30 +494,30 @@ void PagarCita(){
     else{
       if(band == true){
         cout<<"\n**DATOS DE LA CITA**\n";
-        cout<<"\nNombre: "<<cloneX.front().NombrePaciente;
-        cout<<"\nDoctor: "<<cloneX.front().doctor; 
-        cout<<"\nDia: "<<cloneX.front().fecha;
-        cout<<"\nTotal: $"<<cloneX.front().pago;
+        cout<<"\nNombre: "<<auxiliar.NombrePaciente;
+        cout<<"\nDoctor: "<<auxiliar.doctor; 
+        cout<<"\nDia: "<<auxiliar.fecha;
+        cout<<"\nTotal: $"<<auxiliar.pago;
       }
       else if(band2 == true){
         cout<<"\n**DATOS DE LA CITA**\n";
-        cout<<"\nNombre: "<<cloneX.front().NombrePaciente;
-        cout<<"\nDoctor: "<<cloneX.front().doctor; 
-        cout<<"\nDia: "<<cloneX.front().fecha;
-        cout<<"\nTotal: $"<<cloneX.front().pago;
+        cout<<"\nNombre: "<<auxiliar.NombrePaciente;
+        cout<<"\nDoctor: "<<auxiliar.doctor; 
+        cout<<"\nDia: "<<auxiliar.fecha;
+        cout<<"\nTotal: $"<<auxiliar.pago;
       }
       else if(band3 == true){
         cout<<"\n**DATOS DE LA CITA**\n";
-        cout<<"\nNombre: "<<cloneX.front().NombrePaciente;
-        cout<<"\nDoctor: "<<cloneX.front().doctor; 
-        cout<<"\nDia: "<<cloneX.front().fecha;
-        cout<<"\nTotal: $"<<cloneX.front().pago;
+        cout<<"\nNombre: "<<auxiliar.NombrePaciente;
+        cout<<"\nDoctor: "<<auxiliar.doctor; 
+        cout<<"\nDia: "<<auxiliar.fecha;
+        cout<<"\nTotal: $"<<auxiliar.pago;
       }    
       cout<<"\nIngrese su tarjeta de debito o credito: "; getline(cin,Tarjeta);
       cout<<"\nProcesando pago.....\n";
       cout<<"\nPago realizado con exito!\n";
     }
-
+    system("pause");
 }
 
 void Horarios(){
