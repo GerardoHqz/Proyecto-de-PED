@@ -499,7 +499,6 @@ void AgendarCita()
                 }
             }
             
-
             if(band == true){
                 InformacionPersonal.fecha = opcion5;
                 InformacionPersonal.horarioNenes = opcion6;
