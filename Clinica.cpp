@@ -238,71 +238,71 @@ void AgendarCita()
 
             if(InformacionPersonal.doctor == "m" || InformacionPersonal.doctor == "M"){
                 InformacionPersonal.pago = 12;
-                for(int i=0; i<clone.size();i++){
-                    if(opcion3 == clone.front().fecha){
-                     for(int j=0; j<clone.size(); j++){
-                            if(opcion4 == clone.front().horarioAdulto){
+                for(int i=0; i<clone2.size();i++){
+                    if(opcion3 == clone2.front().fecha){
+                     for(int j=0; j<clone2.size(); j++){
+                            if(opcion4 == clone2.front().horarioAdulto){
                             band = false;
                             }
                         }
                     }
-                clone.pop();
+                clone2.pop();
                 }
             }
 
             if(InformacionPersonal.doctor == "p" || InformacionPersonal.doctor == "P"){
                 InformacionPersonal.pago = 25;
-                for(int i=0; i<clone.size();i++){
-                    if(opcion3 == clone.front().fecha){
-                     for(int j=0; j<clone.size(); j++){
-                            if(opcion4 == clone.front().horarioAdulto){
+                for(int i=0; i<clone2.size();i++){
+                    if(opcion3 == clone2.front().fecha){
+                     for(int j=0; j<clone2.size(); j++){
+                            if(opcion4 == clone2.front().horarioAdulto){
                             band = false;
                             }
                         }
                     }
-                clone.pop();
+                clone2.pop();
                 }
             }
 
             if(InformacionPersonal.doctor == "d" || InformacionPersonal.doctor == "D"){
                 InformacionPersonal.pago = 25;
-                for(int i=0; i<clone.size();i++){
-                    if(opcion3 == clone.front().fecha){
-                        for(int j=0; j<clone.size(); j++){
-                            if(opcion4 == clone.front().horarioAdulto){
+                for(int i=0; i<clone2.size();i++){
+                    if(opcion3 == clone2.front().fecha){
+                        for(int j=0; j<clone2.size(); j++){
+                            if(opcion4 == clone2.front().horarioAdulto){
                             band = false;
                             }
                         }
                     }
-                clone.pop();
+                clone2.pop();
                 }
             }
 
             if(InformacionPersonal.doctor == "e" || InformacionPersonal.doctor == "E"){
                 InformacionPersonal.pago = 25;
                 for(int i=0; i<clone.size();i++){
-                    if(opcion3 == clone.front().fecha){
-                     for(int j=0; j<clone.size(); j++){
-                            if(opcion4 == clone.front().horarioAdulto){
+                    if(opcion3 == clone2.front().fecha){
+                     for(int j=0; j<clone2.size(); j++){
+                            if(opcion4 == clone2.front().horarioAdulto){
                             band = false;
                             }
                         }
                     }
-                clone.pop();
+                clone2.pop();
                 }
             }
 
             if(InformacionPersonal.doctor == "c" || InformacionPersonal.doctor == "C"){
                 InformacionPersonal.pago = 25;
                 for(int i=0; i<clone.size();i++){
-                    if(opcion3 == clone.front().fecha){
-                     for(int j=0; j<clone.size(); j++){
-                            if(opcion4 == clone.front().horarioAdulto){
+                    if(opcion3 == clone2.front().fecha){
+                     for(int j=0; j<clone2.size(); j++){
+                            if(opcion4 == clone2.front().horarioAdulto){
                             band = false;
                             }
                         }
                     }
-                clone.pop();
+                clone2.pop();
                 }
             }
             
@@ -340,71 +340,71 @@ void AgendarCita()
 
             if(InformacionPersonal.doctor == "m" || InformacionPersonal.doctor == "M"){
                 InformacionPersonal.pago = 12;
-                for(int i=0; i<clone.size();i++){
-                    if(opcion5 == clone.front().fecha){
-                     for(int j=0; j<clone.size(); j++){
-                            if(opcion6 == clone.front().horarioNenes){
+                for(int i=0; i<clone3.size();i++){
+                    if(opcion5 == clone3.front().fecha){
+                     for(int j=0; j<clone3.size(); j++){
+                            if(opcion6 == clone3.front().horarioNenes){
                             band = false;
                             }
                         }
                     }
-                clone.pop();
+                clone3.pop();
                 }
             }
 
             if(InformacionPersonal.doctor == "p" || InformacionPersonal.doctor == "P"){
                 InformacionPersonal.pago = 25;
-                for(int i=0; i<clone.size();i++){
-                    if(opcion5 == clone.front().fecha){
-                     for(int j=0; j<clone.size(); j++){
-                            if(opcion6 == clone.front().horarioNenes){
+                for(int i=0; i<clone3.size();i++){
+                    if(opcion5 == clone3.front().fecha){
+                     for(int j=0; j<clone3.size(); j++){
+                            if(opcion6 == clone3.front().horarioNenes){
                             band = false;
                             }
                         }
                     }
-                clone.pop();
+                clone3.pop();
                 }
             }
 
             if(InformacionPersonal.doctor == "d" || InformacionPersonal.doctor == "D"){
                 InformacionPersonal.pago = 25;
-                for(int i=0; i<clone.size();i++){
-                    if(opcion5 == clone.front().fecha){
-                        for(int j=0; j<clone.size(); j++){
-                            if(opcion6 == clone.front().horarioNenes){
+                for(int i=0; i<clone3.size();i++){
+                    if(opcion5 == clone3.front().fecha){
+                        for(int j=0; j<clone3.size(); j++){
+                            if(opcion6 == clone3.front().horarioNenes){
                             band = false;
                             }
                         }
                     }
-                clone.pop();
+                clone3.pop();
                 }
             }
 
             if(InformacionPersonal.doctor == "e" || InformacionPersonal.doctor == "E"){
                 InformacionPersonal.pago = 25;
-                for(int i=0; i<clone.size();i++){
-                    if(opcion5 == clone.front().fecha){
-                     for(int j=0; j<clone.size(); j++){
-                            if(opcion6 == clone.front().horarioNenes){
+                for(int i=0; i<clone3.size();i++){
+                    if(opcion5 == clone3.front().fecha){
+                     for(int j=0; j<clone3.size(); j++){
+                            if(opcion6 == clone3.front().horarioNenes){
                             band = false;
                             }
                         }
                     }
-                clone.pop();
+                clone3.pop();
                 }
             }
 
             if(InformacionPersonal.doctor == "c" || InformacionPersonal.doctor == "C"){
                 InformacionPersonal.pago = 25;
-                for(int i=0; i<clone.size();i++){
-                    if(opcion5 == clone.front().fecha){
-                     for(int j=0; j<clone.size(); j++){
-                            if(opcion6 == clone.front().horarioNenes){
+                for(int i=0; i<clone3.size();i++){
+                    if(opcion5 == clone3.front().fecha){
+                     for(int j=0; j<clone3.size(); j++){
+                            if(opcion6 == clone3.front().horarioNenes){
                             band = false;
                             }
                         }
                     }
-                clone.pop();
+                clone3.pop();
                 }
             }
             
