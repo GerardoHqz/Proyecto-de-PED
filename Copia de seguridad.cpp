@@ -123,8 +123,7 @@ void AgendarCita()
     cout << "DUI: ";
     getline(cin,InformacionPersonal.DUI);
 
-    
-    cout<<"\n\n\nDoctores disponibles:\n";
+    cout<<"\nDoctores disponibles:\n";
     cout<<"\nDr.Duenas Medico General (G)-------- $12";
     cout<<"\nDra.Vega Pediatra (P)--------------- $25";
     cout<<"\nDra.Santiago Dermatologa (D)-------- $25";
