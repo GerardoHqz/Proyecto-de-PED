@@ -149,8 +149,9 @@ void AgendarCita()
             cout << "\nEscoja un horario: "; cin >> opcion2;
 
             if(InformacionPersonal.doctor == "G" || InformacionPersonal.doctor == "g"){
+                InformacionPersonal.pago = 12;
+                InformacionPersonal.doctor = "Dr.Paolo Duenas -Medico General-";
                 for(int i=0; i<clone.size();i++){
-                    InformacionPersonal.pago = 12;
                     if(opcion == clone.front().fecha){
                         for(int j=0; j<clone.size(); j++){
                             if(opcion2 == clone.front().horario){
@@ -168,8 +169,8 @@ void AgendarCita()
             }
 
             if(InformacionPersonal.doctor == "p" || InformacionPersonal.doctor == "P"){
+                InformacionPersonal.pago = 25;
                 for(int i=0; i<clone.size();i++){
-                    InformacionPersonal.pago = 25;
                     if(opcion == clone.front().fecha){
                      for(int j=0; j<clone.size(); j++){
                             if(opcion2 == clone.front().horario){
@@ -187,8 +188,8 @@ void AgendarCita()
             }
 
             if(InformacionPersonal.doctor == "d" || InformacionPersonal.doctor == "D"){
+                InformacionPersonal.pago = 25;    
                 for(int i=0; i<clone.size();i++){
-                    InformacionPersonal.pago = 25;
                     if(opcion == clone.front().fecha){
                         for(int j=0; j<clone.size(); j++){
                             if(opcion2 == clone.front().horario){
@@ -206,8 +207,8 @@ void AgendarCita()
             }
 
             if(InformacionPersonal.doctor == "e" || InformacionPersonal.doctor == "E"){
+                InformacionPersonal.pago = 25;
                 for(int i=0; i<clone.size();i++){
-                    InformacionPersonal.pago = 25;
                     if(opcion == clone.front().fecha){
                      for(int j=0; j<clone.size(); j++){
                             if(opcion2 == clone.front().horario){
@@ -225,8 +226,8 @@ void AgendarCita()
             }
 
             if(InformacionPersonal.doctor == "c" || InformacionPersonal.doctor == "C"){
+                InformacionPersonal.pago = 25;
                 for(int i=0; i<clone.size();i++){
-                    InformacionPersonal.pago = 25;
                     if(opcion == clone.front().fecha){
                     for(int j=0; j<clone.size(); j++){
                             if(opcion2 == clone.front().horario){
