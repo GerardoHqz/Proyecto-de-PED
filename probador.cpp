@@ -1,5 +1,5 @@
 #include <iostream>
-#include <queue>
+#include <vector>
 #include <string>
 #include <stdlib.h>
 #include <windows.h>
@@ -20,9 +20,9 @@ struct Citas //se ingresan los datos de las citas
 };
 typedef struct Citas citas;
 
-queue<citas> Ancianos;
-queue<citas> Adultos;
-queue<citas> Nenes;
+vector<citas> Ancianos;
+vector<citas> Adultos;
+vector<citas> Nenes;
 citas InformacionPersonal;
 
 void AgendarCita();
@@ -102,10 +102,6 @@ int main()
 
 void AgendarCita()
 {
-    queue<citas>clone = Ancianos;
-    queue<citas>clone2 = Adultos;
-    queue<citas>clone3 = Nenes;
-
     bool status = true, status2 = true, band = true, validaciones = true;
     int opcion, opcion2;
     int opcion3, opcion4;
@@ -114,8 +110,9 @@ void AgendarCita()
     string nombre, dui,doc;
 
     system("cls");
+    system("color E");
+    cout << "\n-----------*Ingreso de datos personales*-----------\n";
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),9);
-    cout << "\nIngrese sus datos personales\n";
     cout << "\nNota: En caso de que sea menor de edad, ingrese el DUI de su representante\n";
     cin.ignore();
     do{
@@ -159,7 +156,9 @@ void AgendarCita()
     
     do{
         system("cls");
-        cout<<"\nDoctores disponibles:\n";
+        system("color E");
+        cout<<"\n  *Doctores disponibles:\n";
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),9);
         cout<<"\nDr.Duenas Medico General (G)-------- $12";
         cout<<"\nDra.Vega Pediatra (P)--------------- $25";
         cout<<"\nDra.Santiago Dermatologa (D)-------- $25";
@@ -170,14 +169,16 @@ void AgendarCita()
         if((doc != " " && doc != "  ") && (doc == "G" || doc == "P" || doc == "D" || doc == "E" || doc == "C" || doc == "g" || doc == "d" || doc == "e" || doc == "c" || doc == "p")){
             InformacionPersonal.doctor = doc;
             validaciones = false;
+            cout<<endl;
         }
         else{
-            cout<<"\nDato erroneo! , intente nuevamente\n";
+            cout<<"\nDato erroneo! , intente nuevamente\n\n";
             validaciones = true;
             system("pause");
         }
         
     }while(validaciones);
+    cout<<endl;
     system("pause");
     
 //-----------------------------------ANCIANOS---------------------------------//
@@ -185,7 +186,9 @@ void AgendarCita()
         do{
             band = true;
             system("cls");
-            cout<<"\n             ****HORARIOS***";
+            system("color E");
+            cout<<"\n             ****HORARIOS***\n";
+            SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),9);
             cout<<"\nConsultas de lunes a sabados";
             cout<<"\nFechas disponibles a partir del 2 al 23 de diciembre";
             cout<<"\nDigite la fecha que desea: "; cin>>opcion;
@@ -199,10 +202,10 @@ void AgendarCita()
             if(InformacionPersonal.doctor == "G" || InformacionPersonal.doctor == "g"){
                 InformacionPersonal.pago = 12;
                 InformacionPersonal.doctor = "Dr.Paolo Duenas -Medico General-";  
-                for(int i=0; i<clone.size();i++){
-                    if(opcion == clone.front().fecha){
-                        for(int j=0; j<clone.size(); j++){
-                            if(opcion2 == clone.front().horario){
+                for(int i=0; i<Ancianos.size();i++){
+                    if(opcion == Ancianos[i].fecha){
+                        for(int j=0; j<Ancianos.size(); j++){
+                            if(opcion2 == Ancianos[j].horario){
                                 band = false;
                             }
                         }
@@ -210,107 +213,99 @@ void AgendarCita()
                     if(!band){
                         break;
                     }
-                    else{
-                        clone.pop();
-                    }
                 }
             }
 
             if(InformacionPersonal.doctor == "p" || InformacionPersonal.doctor == "P"){
                 InformacionPersonal.pago = 25;
                 InformacionPersonal.doctor = "Dr.Monica Vega -Pediatra-";  
-                for(int i=0; i<clone.size();i++){
-                    if(opcion == clone.front().fecha){
-                     for(int j=0; j<clone.size(); j++){
-                            if(opcion2 == clone.front().horario){
-                            band = false;
+                for(int i=0; i<Ancianos.size();i++){
+                    if(opcion == Ancianos[i].fecha){
+                        for(int j=0; j<Ancianos.size(); j++){
+                            if(opcion2 == Ancianos[j].horario){
+                                band = false;
                             }
                         }
                     }
                     if(!band){
                         break;
-                    }
-                    else{
-                        clone.pop();
                     }
                 }
             }
 
             if(InformacionPersonal.doctor == "d" || InformacionPersonal.doctor == "D"){
-                InformacionPersonal.pago = 25; 
-                InformacionPersonal.doctor = "Dr. Mercedes Santiago -Dermatologa-";   
-                for(int i=0; i<clone.size();i++){
-                    if(opcion == clone.front().fecha){
-                        for(int j=0; j<clone.size(); j++){
-                            if(opcion2 == clone.front().horario){
-                            band = false;
+                InformacionPersonal.pago = 25;
+                InformacionPersonal.doctor = "Dr. Mercedes Santiago -Dermatologa-";  
+                for(int i=0; i<Ancianos.size();i++){
+                    if(opcion == Ancianos[i].fecha){
+                        for(int j=0; j<Ancianos.size(); j++){
+                            if(opcion2 == Ancianos[j].horario){
+                                band = false;
                             }
                         }
                     }
                     if(!band){
                         break;
-                    }
-                    else{
-                        clone.pop();
                     }
                 }
             }
 
             if(InformacionPersonal.doctor == "e" || InformacionPersonal.doctor == "E"){
                 InformacionPersonal.pago = 25;
-                InformacionPersonal.doctor = "Dr. Gerardo Henriquez -Endocrinologo-";
-                for(int i=0; i<clone.size();i++){
-                    if(opcion == clone.front().fecha){
-                     for(int j=0; j<clone.size(); j++){
-                            if(opcion2 == clone.front().horario){
-                            band = false;
+                InformacionPersonal.doctor = "Dr. Gerardo Henriquez -Endocrinologo-";  
+                for(int i=0; i<Ancianos.size();i++){
+                    if(opcion == Ancianos[i].fecha){
+                        for(int j=0; j<Ancianos.size(); j++){
+                            if(opcion2 == Ancianos[j].horario){
+                                band = false;
                             }
                         }
                     }
                     if(!band){
                         break;
-                    }
-                    else{
-                        clone.pop();
                     }
                 }
             }
 
             if(InformacionPersonal.doctor == "c" || InformacionPersonal.doctor == "C"){
                 InformacionPersonal.pago = 25;
-                InformacionPersonal.doctor = "Dr. Fabiola Escobar -Cardiologa-";
-                for(int i=0; i<clone.size();i++){
-                    if(opcion == clone.front().fecha){
-                    for(int j=0; j<clone.size(); j++){
-                            if(opcion2 == clone.front().horario){
-                            band = false;
+                InformacionPersonal.doctor = "Dr. Fabiola Escobar -Cardiologa-";  
+                for(int i=0; i<Ancianos.size();i++){
+                    if(opcion == Ancianos[i].fecha){
+                        for(int j=0; j<Ancianos.size(); j++){
+                            if(opcion2 == Ancianos[j].horario){
+                                band = false;
                             }
                         }
                     }
                     if(!band){
                         break;
                     }
-                    else{
-                        clone.pop();
-                    }
                 }
             }
-            
 
             if(band == true){
-                InformacionPersonal.fecha = opcion;
-                InformacionPersonal.horario = opcion2;
-                status = false;
-                cout<<"\nCita registrada con exito!, Proceda a la opcion de Pagar Cita\n";
+                if(opcion != 6 && opcion != 13 && opcion != 20){
+                    InformacionPersonal.fecha = opcion;
+                    InformacionPersonal.horarioNenes = opcion2;
+                    status = false;
+                    cout<<"\nCita registrada con exito!, prosiga a la opcion de pgar cita.\n";
+                }
+                else{
+                    cout<<"\nEste dia es no trabajamos, pruebe otro dia por favor c: \n";
+                    status = true;
+                }
+                
             }
             else{
-                cout<<"\nEste horario ya esta ocupado, por favor ingrese a otra  hora u otro dia\n";
+                cout<<"\nEste horario ya esta ocupado, por favor ingrese a otra  hora u otro dia\n\n";
             }
+            cout<<endl;
             system("pause");
 
         }while(status);
 
-        Ancianos.push(InformacionPersonal);
+        Ancianos.push_back(InformacionPersonal);
     }
 
 //-----------------------------------ADULTOS---------------------------------//
@@ -319,7 +314,9 @@ void AgendarCita()
         do{
             band = true;
             system("cls");
-            cout<<"\n             ****HORARIOS***";
+            system("color E");
+            cout<<"\n             ****HORARIOS***\n";
+            SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),9);
             cout<<"\nConsultas de lunes a sabados";
             cout<<"\nFechas disponibles a partir del 2 al 23 de diciembre";
             cout<<"\nDigite la fecha que desea: "; cin>>opcion3;
@@ -333,19 +330,16 @@ void AgendarCita()
             if(InformacionPersonal.doctor == "g" || InformacionPersonal.doctor == "G"){
                 InformacionPersonal.pago = 12;
                  InformacionPersonal.doctor = "Dr.Paolo Duenas -Medico General-";
-                for(int i=0; i<clone2.size();i++){
-                    if(opcion3 == clone2.front().fecha){
-                     for(int j=0; j<clone2.size(); j++){
-                            if(opcion4 == clone2.front().horarioAdulto){
-                            band = false;
+                for(int i=0; i<Adultos.size();i++){
+                    if(opcion3 == Adultos[i].fecha){
+                        for(int j=0; j<Adultos.size(); j++){
+                            if(opcion4 == Adultos[j].horarioAdulto){
+                                band = false;
                             }
                         }
                     }
                     if(!band){
                         break;
-                    }
-                    else{
-                        clone2.pop();
                     }
                 }
             }
@@ -353,19 +347,16 @@ void AgendarCita()
             if(InformacionPersonal.doctor == "p" || InformacionPersonal.doctor == "P"){
                 InformacionPersonal.pago = 25;
                 InformacionPersonal.doctor = "Dr.Monica Vega -Pediatra-"; 
-                for(int i=0; i<clone2.size();i++){
-                    if(opcion3 == clone2.front().fecha){
-                     for(int j=0; j<clone2.size(); j++){
-                            if(opcion4 == clone2.front().horarioAdulto){
-                            band = false;
+                for(int i=0; i<Adultos.size();i++){
+                    if(opcion3 == Adultos[i].fecha){
+                        for(int j=0; j<Adultos.size(); j++){
+                            if(opcion4 == Adultos[j].horarioAdulto){
+                                band = false;
                             }
                         }
                     }
                     if(!band){
                         break;
-                    }
-                    else{
-                        clone2.pop();
                     }
                 }
             }
@@ -373,19 +364,16 @@ void AgendarCita()
             if(InformacionPersonal.doctor == "d" || InformacionPersonal.doctor == "D"){
                 InformacionPersonal.pago = 25;
                 InformacionPersonal.doctor = "Dr. Mercedes Santiago -Dermatologa-";
-                for(int i=0; i<clone2.size();i++){
-                    if(opcion3 == clone2.front().fecha){
-                        for(int j=0; j<clone2.size(); j++){
-                            if(opcion4 == clone2.front().horarioAdulto){
-                            band = false;
+                for(int i=0; i<Adultos.size();i++){
+                    if(opcion3 == Adultos[i].fecha){
+                        for(int j=0; j<Adultos.size(); j++){
+                            if(opcion4 == Adultos[j].horarioAdulto){
+                                band = false;
                             }
                         }
                     }
                     if(!band){
                         break;
-                    }
-                    else{
-                        clone2.pop();
                     }
                 }
             }
@@ -393,19 +381,16 @@ void AgendarCita()
             if(InformacionPersonal.doctor == "e" || InformacionPersonal.doctor == "E"){
                 InformacionPersonal.pago = 25;
                 InformacionPersonal.doctor = "Dr. Gerardo Henriquez -Endocrinologo-";
-                for(int i=0; i<clone2.size();i++){
-                    if(opcion3 == clone2.front().fecha){
-                     for(int j=0; j<clone2.size(); j++){
-                            if(opcion4 == clone2.front().horarioAdulto){
-                            band = false;
+                for(int i=0; i<Adultos.size();i++){
+                    if(opcion3 == Adultos[i].fecha){
+                        for(int j=0; j<Adultos.size(); j++){
+                            if(opcion4 == Adultos[j].horarioAdulto){
+                                band = false;
                             }
                         }
                     }
                     if(!band){
                         break;
-                    }
-                    else{
-                        clone2.pop();
                     }
                 }
             }
@@ -413,46 +398,52 @@ void AgendarCita()
             if(InformacionPersonal.doctor == "c" || InformacionPersonal.doctor == "C"){
                 InformacionPersonal.pago = 25;
                 InformacionPersonal.doctor = "Dr. Fabiola Escobar -Cardiologa-";
-                for(int i=0; i<clone2.size();i++){
-                    if(opcion3 == clone2.front().fecha){
-                     for(int j=0; j<clone2.size(); j++){
-                            if(opcion4 == clone2.front().horarioAdulto){
-                            band = false;
+                for(int i=0; i<Adultos.size();i++){
+                    if(opcion3 == Adultos[i].fecha){
+                        for(int j=0; j<Adultos.size(); j++){
+                            if(opcion4 == Adultos[j].horarioAdulto){
+                                band = false;
                             }
                         }
                     }
                     if(!band){
                         break;
                     }
-                    else{
-                        clone2.pop();
-                    }
                 }
             }
             
 
             if(band == true){
-                InformacionPersonal.fecha = opcion3;
-                InformacionPersonal.horarioAdulto = opcion4;
-                status = false;
-                cout<<"\nCita registrada con exito!, por favor prosiga a la opcion Pagar Cita\n";
+                if(opcion3 != 6 && opcion3 != 13 && opcion3 != 20){
+                    InformacionPersonal.fecha = opcion3;
+                    InformacionPersonal.horarioNenes = opcion4;
+                    status = false;
+                    cout<<"\nCita registrada con exito!, prosiga a la opcion de pgar cita.\n";
+                }
+                else{
+                    status = true;
+                }
+                
             }
             else{
                 cout<<"\nEste horario ya esta ocupado, por favor ingrese a otra  hora u otro dia\n";
             }
+            cout<<endl;
             system("pause");
 
         }while(status);
 
-        Adultos.push(InformacionPersonal);
+        Adultos.push_back(InformacionPersonal);
     }
 
 //------------------------------------NENES----------------------------------//
-    if(InformacionPersonal.EdadPaciente > 1 && InformacionPersonal.EdadPaciente < 18 ){
+    if(InformacionPersonal.EdadPaciente > 0 && InformacionPersonal.EdadPaciente < 18 ){
         do{
             band = true;
             system("cls");
-            cout<<"\n             ****HORARIOS***";
+            system("color E");
+            cout<<"\n             ****HORARIOS***\n";
+            SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),9);
             cout<<"\nConsultas de lunes a sabados";
             cout<<"\nFechas disponibles a partir del 2 al 23 de diciembre";
             cout<<"\nDigite la fecha que desea: "; cin>>opcion5;
@@ -465,10 +456,10 @@ void AgendarCita()
             if(InformacionPersonal.doctor == "g" || InformacionPersonal.doctor == "G"){
                 InformacionPersonal.pago = 12;
                 InformacionPersonal.doctor = "Dr. Paolo Duenas -Medico General-";
-                for(int i=0; i<clone3.size();i++){
-                    if(opcion5 == clone3.front().fecha){
-                     for(int j=0; j<clone3.size(); j++){
-                            if(opcion6 == clone3.front().horarioNenes){
+                for(int i=0; i<Nenes.size();i++){
+                    if(opcion5 == Nenes[i].fecha){
+                        for(int j=0; j<Nenes.size(); j++){
+                            if(opcion6 == Nenes[j].horarioNenes){
                                 band = false;
                             }
                         }
@@ -476,28 +467,22 @@ void AgendarCita()
                     if(!band){
                         break;
                     }
-                    else{
-                        clone3.pop();
-                    }
                 }
             }
 
             if(InformacionPersonal.doctor == "p" || InformacionPersonal.doctor == "P"){
                 InformacionPersonal.pago = 25;
                 InformacionPersonal.doctor = "Dra. Vega -Pediatra-";
-                for(int i=0; i<clone3.size();i++){
-                    if(opcion5 == clone3.front().fecha){
-                     for(int j=0; j<clone3.size(); j++){
-                            if(opcion6 == clone3.front().horarioNenes){
-                            band = false;
+                for(int i=0; i<Nenes.size();i++){
+                    if(opcion5 == Nenes[i].fecha){
+                        for(int j=0; j<Nenes.size(); j++){
+                            if(opcion6 == Nenes[j].horarioNenes){
+                                band = false;
                             }
                         }
                     }
                     if(!band){
                         break;
-                    }
-                    else{
-                        clone3.pop();
                     }
                 }
             }
@@ -505,77 +490,75 @@ void AgendarCita()
             if(InformacionPersonal.doctor == "d" || InformacionPersonal.doctor == "D"){
                 InformacionPersonal.pago = 25;
                 InformacionPersonal.doctor = "Dr. Santiago -Dermatologa-";
-                for(int i=0; i<clone3.size();i++){
-                    if(opcion5 == clone3.front().fecha){
-                        for(int j=0; j<clone3.size(); j++){
-                            if(opcion6 == clone3.front().horarioNenes){
-                            band = false;
+                for(int i=0; i<Nenes.size();i++){
+                    if(opcion5 == Nenes[i].fecha){
+                        for(int j=0; j<Nenes.size(); j++){
+                            if(opcion6 == Nenes[j].horarioNenes){
+                                band = false;
                             }
                         }
                     }
                     if(!band){
                         break;
-                    }
-                    else{
-                        clone3.pop();
                     }
                 }
             }
-
+            
             if(InformacionPersonal.doctor == "e" || InformacionPersonal.doctor == "E"){
                 InformacionPersonal.pago = 25;
                 InformacionPersonal.doctor = "Dr. Gerardo Henriquez -Endocrinologo-";
-                for(int i=0; i<clone3.size();i++){
-                    if(opcion5 == clone3.front().fecha){
-                     for(int j=0; j<clone3.size(); j++){
-                            if(opcion6 == clone3.front().horarioNenes){
-                            band = false;
+                for(int i=0; i<Nenes.size();i++){
+                    if(opcion5 == Nenes[i].fecha){
+                        for(int j=0; j<Nenes.size(); j++){
+                            if(opcion6 == Nenes[j].horarioNenes){
+                                band = false;
                             }
                         }
                     }
                     if(!band){
                         break;
-                    }
-                    else{
-                        clone3.pop();
                     }
                 }
             }
 
             if(InformacionPersonal.doctor == "c" || InformacionPersonal.doctor == "C"){
                 InformacionPersonal.pago = 25;
-                InformacionPersonal.doctor = "Dra. Escobar -Cardiologa-";
-                for(int i=0; i<clone3.size();i++){
-                    if(opcion5 == clone3.front().fecha){
-                     for(int j=0; j<clone3.size(); j++){
-                            if(opcion6 == clone3.front().horarioNenes){
-                            band = false;
+                InformacionPersonal.doctor = "Dr. Gerardo Henriquez -Endocrinologo-";
+                for(int i=0; i<Nenes.size();i++){
+                    if(opcion5 == Nenes[i].fecha){
+                        for(int j=0; j<Nenes.size(); j++){
+                            if(opcion6 == Nenes[j].horarioNenes){
+                                band = false;
                             }
                         }
                     }
                     if(!band){
                         break;
                     }
-                    else{
-                        clone3.pop();
-                    }
                 }
             }
             
             if(band == true){
-                InformacionPersonal.fecha = opcion5;
-                InformacionPersonal.horarioNenes = opcion6;
-                status = false;
-                cout<<"\nCita registrada con exito!, prosiga a la opcion de pgar cita.\n";
+                if(opcion5 != 6 && opcion5 != 13 && opcion5 != 20){
+                    InformacionPersonal.fecha = opcion5;
+                    InformacionPersonal.horarioNenes = opcion6;
+                    status = false;
+                    cout<<"\nCita registrada con exito!, prosiga a la opcion de pgar cita.\n";
+                }
+                else{
+                    status = true;
+                }
+                
             }
             else{    
                 cout<<"\nEste horario ya esta ocupado, por favor ingrese a otra  hora u otro dia\n";
             }
+            cout<<endl;
             system("pause");
 
         }while(status);
 
-        Nenes.push(InformacionPersonal);
+        Nenes.push_back(InformacionPersonal);
     }
 
 }
@@ -585,18 +568,17 @@ void AgendarCita()
 //Funcion encargada de Pagar la cita.
 
 void PagarCita(){
-    queue<citas>clone = Ancianos;
-    queue<citas>clone2 = Adultos;
-    queue<citas>clone3 = Nenes;
     citas auxiliar ;
 
-    bool found = false, band = false, band2 = false, band3 = false, status = true, validaciones = true;
+    bool found = false, band = false, validaciones = true;
     int pago;
     string ElementoBuscar, dui;
     string Tarjeta;
 
-    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),10);
+    
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),11);
     cout<<"\n**Pago de cita**\n";
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),10);
     do{
         cin.ignore();
         cout<<"Digite su DUI: "; getline(cin,dui);
@@ -611,107 +593,82 @@ void PagarCita(){
     }while(validaciones);
     
     //----------------------------------Ancianos
-    while (!clone.empty()) {
-        if (clone.front().DUI == ElementoBuscar){
-            band = true;
+    for(int i=0;i<Ancianos.size();i++){
+        if(Ancianos[i].DUI == ElementoBuscar){
             found = true;
-            auxiliar.NombrePaciente = clone.front().NombrePaciente;
-            auxiliar.doctor = clone.front().doctor;
-            auxiliar.fecha = clone.front().fecha;
-            auxiliar.pago = clone.front().pago;
-            clone.front().cancelado = true;
-            auxiliar.cancelado = clone.front().cancelado;
-            clone.pop();
+            if(Ancianos[i].cancelado == false){
+                SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),11);
+                cout<<"\n**DATOS DE LA CITA**\n";
+                SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),10);
+                cout<<"\nNombre: "<<Ancianos[i].NombrePaciente;
+                cout<<"\nDoctor: "<<Ancianos[i].doctor; 
+                cout<<"\nDia: "<<Ancianos[i].fecha;
+                cout<<"\nTotal: $"<<Ancianos[i].pago;
+                cout<<"\n\nIntroduzca su tarjeta de pago: "; getline(cin,Tarjeta);
+                cout<<"\n\nSu pago se ha realizado con exito!, te esperamos!.\n";
+                cout<<endl;
+                Ancianos[i].cancelado = true;
+                band = true;
+            }
+            else{
+                band = false;
+            }
         }
-        else{
-            clone.pop();
-        }
-
     }
+    
     //----------------------------------Adultos
-    while (!clone2.empty()) {
-        if (clone2.front().DUI == ElementoBuscar){
-            band2 = true;
+    for(int i=0;i<Adultos.size();i++){
+        if(Adultos[i].DUI == ElementoBuscar){
             found = true;
-            auxiliar.NombrePaciente = clone2.front().NombrePaciente;
-            auxiliar.doctor = clone2.front().doctor;
-            auxiliar.fecha = clone2.front().fecha;
-            auxiliar.pago = clone2.front().pago;
-            clone2.front().cancelado = true;
-            auxiliar.cancelado = clone2.front().cancelado;
-            clone2.pop();
-        }
-        else{
-            clone2.pop();
+            if(Adultos[i].cancelado == false){
+                SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),11);
+                cout<<"\n**DATOS DE LA CITA**\n";
+                SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),10);
+                cout<<"\nNombre: "<<Adultos[i].NombrePaciente;
+                cout<<"\nDoctor: "<<Adultos[i].doctor; 
+                cout<<"\nDia: "<<Adultos[i].fecha;
+                cout<<"\nTotal: $"<<Adultos[i].pago;
+                cout<<"\n\nIntroduzca su tarjeta de pago: "; getline(cin,Tarjeta);
+                cout<<"\n\nSu pago se ha realizado con exito!, te esperamos!.\n";
+                cout<<endl;
+                Adultos[i].cancelado = true;
+                band = true;
+            }
+            else{
+                band = false;
+            }
         }
     }
+    
     //----------------------------------Nenes
-    while (!clone3.empty()) {
-        if (clone3.front().DUI == ElementoBuscar){
-            band3 = true;
+    for(int i=0;i<Nenes.size();i++){
+        if(Nenes[i].DUI == ElementoBuscar){
             found = true;
-            auxiliar.NombrePaciente = clone3.front().NombrePaciente;
-            auxiliar.doctor = clone3.front().doctor;
-            auxiliar.fecha = clone3.front().fecha;
-            auxiliar.pago = clone3.front().pago;
-            clone3.front().cancelado = true;
-            auxiliar.cancelado = clone3.front().cancelado;
-            clone3.pop();
-        }
-        else{
-          clone3.pop();
-        }
-    }
-                                            //                                     //
-    if(Ancianos.front().cancelado == false  && Adultos.front().cancelado == false && Nenes.front().cancelado == false){
-        if (found == false) {
-            cout << "\nNo se encontró una cita registrada con este DUI\n" << endl;
-        }
-        else{
-            if(band == true){       //*Ancianos
+            if(Nenes[i].cancelado == false){
+                SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),11);
                 cout<<"\n**DATOS DE LA CITA**\n";
-                cout<<"\nNombre: "<<auxiliar.NombrePaciente;
-                cout<<"\nDoctor: "<<auxiliar.doctor; 
-                cout<<"\nDia: "<<auxiliar.fecha;
-                cout<<"\nTotal: $"<<auxiliar.pago;
-                Ancianos.front().cancelado = auxiliar.cancelado;
+                SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),10);
+                cout<<"\nNombre: "<<Nenes[i].NombrePaciente;
+                cout<<"\nDoctor: "<<Nenes[i].doctor; 
+                cout<<"\nDia: "<<Nenes[i].fecha;
+                cout<<"\nTotal: $"<<Nenes[i].pago;
+                cout<<"\n\nIntroduzca su tarjeta de pago: "; getline(cin,Tarjeta);
+                cout<<"\n\nSu pago se ha realizado con exito!, te esperamos!.\n";
+                cout<<endl;
+                Nenes[i].cancelado = true;
+                band = true;
             }
-            else if(band2 == true){     //**Adultos
-                cout<<"\n**DATOS DE LA CITA**\n";
-                cout<<"\nNombre: "<<auxiliar.NombrePaciente;
-                cout<<"\nDoctor: "<<auxiliar.doctor; 
-                cout<<"\nDia: "<<auxiliar.fecha;
-                cout<<"\nTotal: $"<<auxiliar.pago;\
-                Adultos.front().cancelado = auxiliar.cancelado;
+            else{
+                band = false;
             }
-            else if(band3 == true){     //**Nenes
-                cout<<"\n**DATOS DE LA CITA**\n";
-                cout<<"\nNombre: "<<auxiliar.NombrePaciente;
-                cout<<"\nDoctor: "<<auxiliar.doctor; 
-                cout<<"\nDia: "<<auxiliar.fecha;
-                cout<<"\nTotal: $"<<auxiliar.pago;
-                Nenes.front().cancelado = auxiliar.cancelado;
-            }    
-            cout<<"\nIngrese su tarjeta de debito o credito: "; getline(cin,Tarjeta);
-            cout<<"\nProcesando pago.....\n";
-            cout<<"\nPago realizado con exito!\n";
-        }  
-    }
-    else{
-        cout<<"\nLa cita ya esta registrada y pagada\n";
+        }
     }
 
-    //-----------------------------------*Adultos
-    if(Adultos.front().cancelado == false){
-        if (found == false) {
-            cout << "\nNo se encontró una cita registrada con este DUI\n" << endl;
-        }
-        else{
-            
-        }
+    if(found == false){
+        cout<<"\n No hay una persona registrada con este DUI\n";
     }
-    else{
-        cout<<"\nLa cita ya esta registrada y pagada\n";
+    if(band == false && found != false){
+        cout<<"\nEsta cita ya esta registrada y pagada, te esperamos!\n";
     }
     
     system("pause"); 
@@ -727,28 +684,29 @@ void Horarios(){
     cout<< "***************HORARIOS***************\n";
      cout<<"\nConsultas de lunes a sabados";
       cout<<"\nFechas disponibles a partir del 2 al 23 de diciembre";
-      cout<<"\nContamos con los siguientes horarios para que tenga la mejor atencion:";
-         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),15);
+      cout<<"\nContamos con los siguientes horarios para que tenga la mejor atencion:\n";
+            SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),15);
             cout<< "\n-----Adultos  de la tercera Edad-----\n";
-    
+            SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),13);
             cout << "\n1) 6:00 am - 6:30 am       2) 6:30 am - 7:00 am\n";
             cout << "3) 7:00 am - 7:30 am       4) 7:30 am - 8:00 am\n";
             cout << "5) 8:00 am - 8:30 am       6) 8:30 am - 9:00 am\n";
             cout << "7) 9:00 am - 9:30 am\n";
-         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),15);   
+            
+            SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),15);   
             cout<<"\n-----Menores de Edad -----\n" ;
-         
+            SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),13);
             cout << "\n1) 9:30 pm - 10:00 pm       2) 10:00 pm - 10:30 pm\n";
             cout << "3) 10:30 pm - 11:00 pm        4) 11:00 pm - 11:30 pm\n";
             cout << "5) 11:30 pm - 12:00 pm        6) 12:00 pm - 12:30 pm\n";
 
-         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),15);    
+            SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),15);    
             cout<<"\n-----Adultos-----\n"; 
-
+            SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),13);
             cout << "\n1) 1:30 pm - 2:00 pm       2) 2:00 pm - 2:30 pm\n";
             cout << "3) 2:30 pm - 3:00 pm       4) 3:00 pm - 3:30 pm\n";
             cout << "5) 3:30 pm - 4:00 pm       6) 4:00 pm - 4:30 pm\n";
-            cout << "7) 4:30 pm - 5:00 pm\n";
+            cout << "7) 4:30 pm - 5:00 pm\n\n";
             
     system("pause");        
 }
@@ -757,17 +715,18 @@ void Horarios(){
 //Funcion encargada de Cancelar la cita pre agendada.
 
 void CancelarCita(){
-    queue<citas>clone = Ancianos;
-    queue<citas>clone2 = Adultos;
-    queue<citas>clone3 = Nenes;
+    vector<citas>clone = Ancianos;
+    vector<citas>clone2 = Adultos;
+    vector<citas>clone3 = Nenes;
     citas auxiliar ;
 
     bool found = false, band = false, band2 = false, band3 = false, status = true,validaciones = true;
     int pago;
     string ElementoBuscar,Tarjeta,dui;
 
-    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),11);
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),12);
     cout<<"\n**Cancelar cita agendada**\n";
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),11);
     do{
         cin.ignore();
         cout<<"Digite su DUI: "; getline(cin,dui);
@@ -780,89 +739,77 @@ void CancelarCita(){
             validaciones = true;
         }   
     }while(validaciones);
-    
-    while (!clone.empty()) {
-        if (clone.front().DUI == ElementoBuscar){
+
+    for(int i=0; i < Ancianos.size(); i++){
+        if (Ancianos[i].DUI == ElementoBuscar){
             band = true;
             found = true;
-            auxiliar.NombrePaciente = clone.front().NombrePaciente;
-            auxiliar.doctor = clone.front().doctor;
-            auxiliar.fecha = clone.front().fecha;
-            auxiliar.pago = clone.front().pago;
-            clone.pop();
-            while (!Ancianos.empty()){
-                Ancianos.pop();
-            }
+            auxiliar.NombrePaciente = Ancianos[i].NombrePaciente;
+            auxiliar.doctor = Ancianos[i].doctor;
+            auxiliar.fecha = Ancianos[i].fecha;
+            auxiliar.pago = Ancianos[i].pago;
+            Ancianos.pop_back();
         }
-        else{
-            clone.pop();
-        }
-
     }
 
-    while (!clone2.empty()) {
-        if (clone2.front().DUI == ElementoBuscar){
+    for(int i=0; i < Adultos.size(); i++){
+        if (Adultos[i].DUI == ElementoBuscar){
             band2 = true;
             found = true;
-            auxiliar.NombrePaciente = clone2.front().NombrePaciente;
-            auxiliar.doctor = clone2.front().doctor;
-            auxiliar.fecha = clone2.front().fecha;
-            auxiliar.pago = clone2.front().pago;
-            clone2.pop();
-            while (!Adultos.empty()){
-                Adultos.pop();
-            }
-        }
-        else{
-            clone2.pop();
+            auxiliar.NombrePaciente = Adultos[i].NombrePaciente;
+            auxiliar.doctor = Adultos[i].doctor;
+            auxiliar.fecha = Adultos[i].fecha;
+            auxiliar.pago = Adultos[i].pago;
+            Adultos.pop_back();
         }
     }
 
-    while (!clone3.empty()) {
-        if (clone3.front().DUI == ElementoBuscar){
+    for(int i=0; i < Nenes.size(); i++){
+        if (Nenes[i].DUI == ElementoBuscar){
             band3 = true;
             found = true;
-            auxiliar.NombrePaciente = clone3.front().NombrePaciente;
-            auxiliar.doctor = clone3.front().doctor;
-            auxiliar.fecha = clone3.front().fecha;
-            auxiliar.pago = clone3.front().pago;
-            clone3.pop();
-            while (!Nenes.empty()){
-                Nenes.pop();
-            }
-        }
-        else{
-          clone3.pop();
+            auxiliar.NombrePaciente = Nenes[i].NombrePaciente;
+            auxiliar.doctor = Nenes[i].doctor;
+            auxiliar.fecha = Nenes[i].fecha;
+            auxiliar.pago = Nenes[i].pago;
+            Nenes.pop_back();
         }
     }
-
+    
     if (found == false) {
       cout << "\nNo se encontro una cita registrada con este DUI\n" << endl;
     }
     else{
       if(band == true){
-        cout<<"\n**DATOS DE LA CITA**\n";
-        cout<<"\nNombre: "<<auxiliar.NombrePaciente;
-        cout<<"\nDoctor: "<<auxiliar.doctor; 
-        cout<<"\nDia: "<<auxiliar.fecha;
-        cout<<"\nTotal: $"<<auxiliar.pago;
+            SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),12);
+            cout<<"\n**DATOS DE LA CITA**\n";
+            SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),11);
+            cout<<"\nNombre: "<<auxiliar.NombrePaciente;
+            cout<<"\nDoctor: "<<auxiliar.doctor; 
+            cout<<"\nDia: "<<auxiliar.fecha;
+            cout<<"\nTotal: $"<<auxiliar.pago;
       }
       else if(band2 == true){
-        cout<<"\n**DATOS DE LA CITA**\n";
-        cout<<"\nNombre: "<<auxiliar.NombrePaciente;
-        cout<<"\nDoctor: "<<auxiliar.doctor; 
-        cout<<"\nDia: "<<auxiliar.fecha;
-        cout<<"\nTotal: $"<<auxiliar.pago;
+            SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),12);
+            cout<<"\n**DATOS DE LA CITA**\n";
+            SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),11);
+            cout<<"\nNombre: "<<auxiliar.NombrePaciente;
+            cout<<"\nDoctor: "<<auxiliar.doctor; 
+            cout<<"\nDia: "<<auxiliar.fecha;
+            cout<<"\nTotal: $"<<auxiliar.pago;
       }
       else if(band3 == true){
-        cout<<"\n**DATOS DE LA CITA**\n";
-        cout<<"\nNombre: "<<auxiliar.NombrePaciente;
-        cout<<"\nDoctor: "<<auxiliar.doctor; 
-        cout<<"\nDia: "<<auxiliar.fecha;
-        cout<<"\nTotal: $"<<auxiliar.pago;
+            SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),12);
+            cout<<"\n**DATOS DE LA CITA**\n";
+            SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),11);
+            cout<<"\nNombre: "<<auxiliar.NombrePaciente;
+            cout<<"\nDoctor: "<<auxiliar.doctor; 
+            cout<<"\nDia: "<<auxiliar.fecha;
+            cout<<"\nTotal: $"<<auxiliar.pago;
       }    
       cout<<"\nLa cita agendada a nombre de " <<auxiliar.NombrePaciente;
       cout<<" sera cancelada.\n\n";
+      system("pause");
       cout<<"\nCancelando cita agendada.....\n";
       cout<<"\nCita Cancelada, gracias.\n\n";
     }
