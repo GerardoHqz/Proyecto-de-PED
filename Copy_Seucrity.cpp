@@ -811,15 +811,18 @@ void Informacion(){
     
     bool status = true;
     int opcion;
-    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),6);
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),9);
     do
     {
         system("cls");
         cout << "\n-----------------------------INFORMACION-----------------------------\n";
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),6);
         cout << " Bienvenidos a la Clinica La Fachada";
         cout << "\n Nos complace atenderte de lunes a sabados los dias restantes del 2020"; 
         cout << "\n No hay precio para tu salud :)\n";
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),9);
         cout << "\n-----------MENU DE INFORMACION-----------\n";
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),6);
         cout << " 1. Acerca de la  clinica \n";
         cout << " 2. Acerca del Personal \n";
         cout << " 3. Mision \n";
