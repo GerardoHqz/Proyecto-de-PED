@@ -1,6 +1,7 @@
 # Proyecto-de-PED
 
 Integrantes:
+
 *Gerardo Ernesto Henriquez Rodriguez 00034720
 
 *Monica Alejandra Vega Flores        00169618
