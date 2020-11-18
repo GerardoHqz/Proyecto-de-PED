@@ -19,7 +19,7 @@ cita que previamente se haya agendado.
 
 En las opciones de informacion y horarios pues de brindara toda la informacion sobre la clinica, horarios, medicos, vision y valores.
 
-Para el desarollo de este programa hemos utilizado 3 listas simples para alamecenar a las personas segun su edad y el hoario que les 
+Para el desarollo de este programa hemos utilizado 3 listas simples para almacenar a las personas segun su edad y el hoario que les 
 corresponde apoyandonos de la libreria "vector" y otras librerias como string.h , stdlib.h, etc.
 
 Para el trabajo en equipo ocupamos la extension de Visual Studio Code "Live Share" para poder estar todos trabajando juntos, tambien 
