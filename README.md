@@ -23,7 +23,7 @@ Para el desarollo de este programa hemos utilizado 3 listas simples para alamece
 corresponde apoyandonos de la libreria "vector" y otras librerias como string.h , stdlib.h, etc.
 
 Para el trabajo en equipo ocupamos la extension de Visual Studio Code "Live Share" para poder estar todos trabajando juntos, tambien 
-comentar que nuestra compañera Mercedes Lisbeth Santiago Calles tuvo problemas con su visual studio y github asi que no pudo hacer 
-cambios en el repositorio.
+comentar que nuestra compañera Mercedes Lisbeth Santiago Calles tuvo problemas con su visual studio y github asi que no puedo hacer 
+muchos cambios en el repositorio.
 
 Nota: Correrlo con Visual Studio Code!
