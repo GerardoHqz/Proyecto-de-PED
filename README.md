@@ -25,3 +25,5 @@ corresponde apoyandonos de la libreria "vector" y otras librerias como string.h 
 Para el trabajo en equipo ocupamos la extension de Visual Studio Code "Live Share" para poder estar todos trabajando juntos, tambien 
 comentar que nuestra compañera Mercedes Lisbeth Santiago Calles tuvo problemas con su visual studio y github asi que no pudo hacer 
 cambios en el repositorio.
+
+Nota: Correrlo con Visual Studio Code!
