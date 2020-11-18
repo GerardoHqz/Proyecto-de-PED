@@ -2,8 +2,11 @@
 
 Integrantes:
 *Gerardo Ernesto Henriquez Rodriguez 00034720
+
 *Monica Alejandra Vega Flores        00169618
+
 *Paolo Alessandro Dueñas Martinez    00230720
+
 *Mercedes Lisbeth Santiago Calles    00199720
 
 Descripcion del proyecto:
@@ -22,8 +25,6 @@ En las opciones de informacion y horarios pues de brindara toda la informacion s
 Para el desarollo de este programa hemos utilizado 3 listas simples para almacenar a las personas segun su edad y el horario que les 
 corresponde apoyandonos de la libreria "vector" y otras librerias como string.h , stdlib.h, etc.
 
-Para el trabajo en equipo ocupamos la extension de Visual Studio Code "Live Share" para poder estar todos trabajando juntos, tambien 
-comentar que nuestra compañera Mercedes Lisbeth Santiago Calles tuvo problemas con su visual studio y github asi que no puedo hacer 
-muchos cambios en el repositorio.
+Para el trabajo en equipo ocupamos la extension de Visual Studio Code "Live Share" para poder estar todos trabajando juntos.
 
 Nota: Correrlo con Visual Studio Code!
