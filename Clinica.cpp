@@ -234,7 +234,7 @@ void AgendarCita()
                 }
             }
             if(band == true){
-                if(opcion != 6 && opcion != 13 && opcion != 20){
+                if(opcion != 6 && opcion != 13 && opcion != 20 && opcion < 24 && opcion > 1){
                     InformacionPersonal.fecha = opcion;
                     InformacionPersonal.horario = opcion2;
                     status = false;
@@ -319,7 +319,7 @@ void AgendarCita()
             }
             
             if(band == true){
-                if(opcion3 != 6 && opcion3 != 13 && opcion3 != 20){
+                if(opcion3 != 6 && opcion3 != 13 && opcion3 != 20 && opcion3 > 1 && opcion3 < 24){
                     InformacionPersonal.fecha = opcion3;
                     InformacionPersonal.horarioAdulto = opcion4;
                     status = false;
@@ -351,9 +351,9 @@ void AgendarCita()
             cout<<"\nFechas disponibles a partir del 2 al 23 de diciembre";
             cout<<"\nDigite la fecha que desea: "; cin>>opcion5;
             cout<<"\nUsted al ser una persona menor de edad dispone de los siguientes horarios: \n";
-            cout << "1) 9:30 pm - 10:00 pm       2) 10:00 pm - 10:30 pm\n";
-            cout << "3) 10:30 pm - 11:00 pm      4) 11:00 pm - 11:30 pm\n";
-            cout << "5) 11:30 pm - 12:00 pm      6) 12:00 pm - 12:30 pm\n";
+            cout << "1) 9:30 am - 10:00 am       2) 10:00 am - 10:30 am\n";
+            cout << "3) 10:30 am - 11:00 am      4) 11:00 am - 11:30 am\n";
+            cout << "5) 11:30 am - 12:00 pm      6) 12:00 pm - 12:30 pm\n";
             cout << "\nEscoja un horario: "; cin >> opcion6;
             if(InformacionPersonal.doctor == "g" || InformacionPersonal.doctor == "G"){
                 InformacionPersonal.pago = 12;
@@ -403,14 +403,14 @@ void AgendarCita()
             }
             
             if(band == true){
-                if(opcion5 != 6 && opcion5 != 13 && opcion5 != 20){
+                if(opcion5 != 6 && opcion5 != 13 && opcion5 != 20 && opcion5 > 1 && opcion5 < 24){
                     InformacionPersonal.fecha = opcion5;
                     InformacionPersonal.horarioNenes = opcion6;
                     status = false;
                     cout<<"\nCita registrada con exito!, prosiga a la opcion de pagar cita.\n";
                 }
                 else{
-                    cout<<"\nEste dia es no trabajamos, pruebe otro dia por favor c: \n";
+                    cout<<"\nEste dia  no trabajamos, pruebe otro dia por favor c: \n";
                     status = true;
                 }
                 
@@ -599,9 +599,9 @@ void Horarios(){
             SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),15);   
             cout<<"\n-----Menores de Edad -----\n" ;
             SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),13);
-            cout << "\n1) 9:30 pm - 10:00 pm       2) 10:00 pm - 10:30 pm\n";
-            cout << "3) 10:30 pm - 11:00 pm        4) 11:00 pm - 11:30 pm\n";
-            cout << "5) 11:30 pm - 12:00 pm        6) 12:00 pm - 12:30 pm\n";
+            cout << "\n1) 9:30 am - 10:00 am       2) 10:00 am - 10:30 am\n";
+            cout << "3) 10:30 am - 11:00 am        4) 11:00 am - 11:30 am\n";
+            cout << "5) 11:30 am - 12:00 pm        6) 12:00 pm - 12:30 pm\n";
             SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),15);    
             cout<<"\n-----Adultos-----\n"; 
             SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),13);
@@ -688,7 +688,7 @@ void CancelarCita(){
                     auxiliar.doctor = "Dra.Santiago -Dermatologa-";
             }
             if(auxiliar.doctor == "E" || auxiliar.doctor == "e"){
-                    auxiliar.doctor = "Dr.Henriquez -Endoclinologo-";
+                    auxiliar.doctor = "Dr.Henriquez -Endocrinologo-";
             }
             if(auxiliar.doctor == "C" || auxiliar.doctor == "C"){
                     auxiliar.doctor = "Dra.Escobar -Cardiologa-";
@@ -804,7 +804,7 @@ void Informacion(){
             cout << " Graduada de Stanford en pediatria, con maestria y doctorado del TEC de monterrey, vela por la salud de tus crias\n\n";
             cout << " *Dra.Santiago--Dermatologa--\n";
             cout << " Doctorada en Dermatologia de Cambridge, busca siempre el bien de tu piel para que se vea sexy y limpia\n\n";
-            cout << " *Dr.Henriquez--Endoclinologo--\n";
+            cout << " *Dr.Henriquez--Endocrinologo--\n";
             cout << " Graduado de Massachusetts Institute of Technology (MIT) de Endocrinologia avanzada, busca el bien de tu cuerpo\n\n";
             cout << " *Dra.Escobar--Cardiologa--\n";
             cout << " Doctorada de Trinity College Dublin de Cardiologia, casada con el apuesto Dr.Henriquez, siempre al tanto su salud\n\n";
@@ -830,12 +830,12 @@ void Informacion(){
             SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),9);
             cout << "\n--------------------------------------VALORES INSTITUCIONALES-------------------------------\n";
             SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),6);
-            cout << "INTEGRIDAD: Transparencia en todo lo que hacemos\n";
-            cout << "CALIDEZ: Trato amable con empatia\n";
-            cout << "PROFESIONALISMO: Trabajo con responsabilidad y confianza\n";
-            cout << "ETICA PROFESIONAL: Confidencialidad en el servicio\n";
-            cout << "TRABAJO EN EQUIPO: Unidos somos mas efectivos\n";
-            cout << "EQUIDAD: Trato justo y digno para todos\n";
+            cout << "1. INTEGRIDAD: Transparencia en todo lo que hacemos\n";
+            cout << "2. CALIDEZ: Trato amable con empatia\n";
+            cout << "3. PROFESIONALISMO: Trabajo con responsabilidad y confianza\n";
+            cout << "4. ETICA PROFESIONAL: Confidencialidad en el servicio\n";
+            cout << "5. TRABAJO EN EQUIPO: Unidos somos mas efectivos\n";
+            cout << "6. EQUIDAD: Trato justo y digno para todos\n";
             system("pause");
             break;
         case 6:
