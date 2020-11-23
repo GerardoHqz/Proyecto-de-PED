@@ -152,7 +152,7 @@ void AgendarCita()
         cout<<"\nDr.Duenas Medico General (G)-------- $12";
         cout<<"\nDra.Vega Pediatra (P)--------------- $25";
         cout<<"\nDra.Santiago Dermatologa (D)-------- $25";
-        cout<<"\nDr.Henriquez Endoclinologo (E)------ $25";
+        cout<<"\nDr.Henriquez Endocrinologo (E)------ $25";
         cout<<"\nDra.Escobar Cardiologa (C)---------- $25\n";
         cout<<"\nPor favor escriba la letra que corresponde a cada doctor";
         cout<<"\nEscriba el nombre de la especialidad que desea: "; getline(cin,doc);
@@ -469,7 +469,7 @@ void PagarCita(){
                     Ancianos[i].doctor = "Dra.Santiago -Dermatologa-";
                 }
                 if(Ancianos[i].doctor == "E" || Ancianos[i].doctor == "e"){
-                    Ancianos[i].doctor = "Dr.Henriquez -Endoclinologo-";
+                    Ancianos[i].doctor = "Dr.Henriquez -Endocrinologo-";
                 }
                 if(Ancianos[i].doctor == "C" || Ancianos[i].doctor == "C"){
                     Ancianos[i].doctor = "Dra.Escobar -Cardiologa-";
@@ -509,7 +509,7 @@ void PagarCita(){
                     Adultos[i].doctor = "Dr.Santiago -Dermatologa-";
                 }
                 if(Adultos[i].doctor == "E" || Adultos[i].doctor == "e"){
-                    Adultos[i].doctor = "Dr.Henriquez -Endoclinologo-";
+                    Adultos[i].doctor = "Dr.Henriquez -Endocrinologo-";
                 }
                 if(Adultos[i].doctor == "C" || Adultos[i].doctor == "c"){
                     Adultos[i].doctor = "Dr.Escobar -Cardiologa-";
@@ -549,7 +549,7 @@ void PagarCita(){
                     Nenes[i].doctor = "Dra.Santiago -Dermatologa-";
                 }
                 if(Nenes[i].doctor == "E" || Nenes[i].doctor == "e"){
-                    Nenes[i].doctor = "Dr.Henriquez -Endoclinologo-";
+                    Nenes[i].doctor = "Dr.Henriquez -Endocrinologo-";
                 }
                 if(Nenes[i].doctor == "C" || Nenes[i].doctor == "c"){
                     Nenes[i].doctor = "Dra.Escobar -Cardiologa-";
