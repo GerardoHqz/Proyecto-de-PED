@@ -830,7 +830,7 @@ void Informacion(){
             SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),9);
             cout << "\n--------------------------------------VALORES INSTITUCIONALES-------------------------------\n";
             SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),6);
-            cout << "1. INTEGRIDAD: Transparencia en todo lo que hacemos\n";
+            cout << "1. INTEGRIDAD: Transparencia en todo lo que hacemos\";
             cout << "2. CALIDEZ: Trato amable con empatia\n";
             cout << "3. PROFESIONALISMO: Trabajo con responsabilidad y confianza\n";
             cout << "4. ETICA PROFESIONAL: Confidencialidad en el servicio\n";
