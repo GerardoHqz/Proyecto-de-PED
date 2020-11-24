@@ -26,7 +26,9 @@ En las opciones de información y horarios pues se brindará toda la informació
 Para el desarrollo de este programa hemos utilizado 3 listas simples para almacenar a las personas según su edad y el horario que les 
 corresponde apoyándonos de la librería "vector" y otras librerías como string.h, stdlib.h, etc.
 
-Para el trabajo en equipo ocupamos la extensión de Visual Studio Code "Live Share" para poder estar todos trabajando juntos.
+Para el trabajo en equipo ocupamos la extensión de Visual Studio Code "Live Share" para poder estar todos trabajando juntos, nuestra
+compañera Mercedes Santiago tuvo inconvenientes con su visual studio y git por eso no ha hecho cambios dentro del archivo cpp pero como 
+integrantes del equipo damos fé que ha trabajado y ayudado en el proyecto.
 
 Nota: ¡Correrlo con Visual Studio Code!
 
