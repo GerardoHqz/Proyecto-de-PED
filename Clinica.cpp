@@ -234,14 +234,14 @@ void AgendarCita()
                 }
             }
             if(band == true){
-                if(opcion != 6 && opcion != 13 && opcion != 20 && opcion < 24 && opcion > 1){
+                if(opcion != 6 && opcion != 13 && opcion != 20 && opcion < 24 && opcion > 1 && opcion2 > 0 && opcion2 < 8){
                     InformacionPersonal.fecha = opcion;
                     InformacionPersonal.horario = opcion2;
                     status = false;
-                    cout<<"\nCita registrada con exito!, prosiga a la opcion de pgar cita.\n";
+                    cout<<"\nCita registrada con exito!, prosiga a la opcion de pagar cita.\n";
                 }
                 else{
-                    cout<<"\nEste dia es no trabajamos, pruebe otro dia por favor c: \n";
+                    cout<<"\nEste dia es no trabajamos,no esta disponible o es un dato erroneo pruebe otro dia por favor c: \n";
                     status = true;
                 }
                 
@@ -319,15 +319,15 @@ void AgendarCita()
             }
             
             if(band == true){
-                if(opcion3 != 6 && opcion3 != 13 && opcion3 != 20 && opcion3 > 1 && opcion3 < 24){
+                if(opcion3 != 6 && opcion3 != 13 && opcion3 != 20 && opcion3 > 1 && opcion3 < 24 && opcion4 > 0 && opcion4 < 8){
                     InformacionPersonal.fecha = opcion3;
                     InformacionPersonal.horarioAdulto = opcion4;
                     status = false;
-                    cout<<"\nCita registrada con exito!, prosiga a la opcion de pgar cita.\n";
+                    cout<<"\nCita registrada con exito!, prosiga a la opcion de pagar cita.\n";
                 }
                 else{
                     status = true;
-                    cout<<"\nEste dia es no trabajamos, pruebe otro dia por favor c: \n";
+                    cout<<"\nEste dia es no trabajamos,no esta disponible o es un dato erroneo pruebe otro dia por favor c: \n";
                 }
                 
             }
@@ -403,14 +403,14 @@ void AgendarCita()
             }
             
             if(band == true){
-                if(opcion5 != 6 && opcion5 != 13 && opcion5 != 20 && opcion5 > 1 && opcion5 < 24){
+                if(opcion5 != 6 && opcion5 != 13 && opcion5 != 20 && opcion5 > 1 && opcion5 < 24 && opcion6 > 0 && opcion6 < 7){
                     InformacionPersonal.fecha = opcion5;
                     InformacionPersonal.horarioNenes = opcion6;
                     status = false;
                     cout<<"\nCita registrada con exito!, prosiga a la opcion de pagar cita.\n";
                 }
                 else{
-                    cout<<"\nEste dia  no trabajamos, pruebe otro dia por favor c: \n";
+                    cout<<"\nEste dia  no trabajamos,no esta disponible o es un dato erroneo, pruebe otro dia por favor c: \n";
                     status = true;
                 }
                 
@@ -600,8 +600,8 @@ void Horarios(){
             cout<<"\n-----Menores de Edad -----\n" ;
             SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),13);
             cout << "\n1) 9:30 am - 10:00 am       2) 10:00 am - 10:30 am\n";
-            cout << "3) 10:30 am - 11:00 am        4) 11:00 am - 11:30 am\n";
-            cout << "5) 11:30 am - 12:00 pm        6) 12:00 pm - 12:30 pm\n";
+            cout << "3) 10:30 am - 11:00 am       4) 11:00 am - 11:30 am\n";
+            cout << "5) 11:30 am - 12:00 pm       6) 12:00 pm - 12:30 pm\n";
             SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),15);    
             cout<<"\n-----Adultos-----\n"; 
             SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),13);
@@ -758,7 +758,6 @@ void CancelarCita(){
 //<><><><><><><><><><><><><><><><><><><><><><><><><><><><>><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>><><><><><><><><><><><><><><><><><><><><><><><><><><><>//
 //Funcion encargada de mostrar la informacion del negocio.
 void Informacion(){
-
     bool status = true;
     int opcion;
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),6);
